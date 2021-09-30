@@ -1,8 +1,6 @@
 package com.grupp6.backend.controllers;
 
-
-
-import com.grupp6.backend.entities.User;
+import com.grupp6.backend.models.DTO.UserDTO;
 import com.grupp6.backend.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,13 +18,13 @@ public class LoginController {
 
     // get logged in user
     @GetMapping("/whoami")
-    public User whoAmI() {
+    public UserDTO whoAmI() {
         return userService.findCurrentUser();
     }
 
     // register new user
     @PostMapping("/register")
-    public User register(@RequestBody User user) {
+    public UserDTO register(@RequestBody UserDTO user) {
         return userService.registerUser(user);
     }
 

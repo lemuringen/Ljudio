@@ -1,7 +1,8 @@
 package com.grupp6.backend.services;
 
 import com.grupp6.backend.configs.MyUserDetailsService;
-import com.grupp6.backend.entities.User;
+import com.grupp6.backend.models.DTO.UserDTO;
+import com.grupp6.backend.models.User;
 import com.grupp6.backend.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,13 +15,13 @@ public class UserService {
     @Autowired
     private MyUserDetailsService myUserDetailsService;
 
-    public User findCurrentUser() {
+    public UserDTO findCurrentUser() {
         // the login session is stored between page reloads,
         // and we can access the current authenticated user with this
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        return userRepo.findByUsername(username);
+        return userRepo.findByEmail(username);
     }
 
-    public User registerUser(User user) {
+    public UserDTO registerUser(UserDTO user) {
         return myUserDetailsService.addUser(user.getEmail(), user.getPassword(), user.getFirstName(), user.getLastName()); }
 }

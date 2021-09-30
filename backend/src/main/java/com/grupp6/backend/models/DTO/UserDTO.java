@@ -1,4 +1,4 @@
-package com.grupp6.backend.entities;
+package com.grupp6.backend.models.DTO;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -11,7 +11,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-public class User {
+public class UserDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -20,7 +20,7 @@ public class User {
     private String firstName;
     private String lastName;
 
-    public User(String email, String password, String firstName, String lastName) {
+    public UserDTO(String email, String password, String firstName, String lastName) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;

@@ -1,25 +1,23 @@
-package com.grupp6.backend.entities;
+package com.grupp6.backend.models;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Entity
-@Table(name = "playlists")
-public class Playlist {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
 
+public class Playlist {
+
+    private Long id;
     private String name;
-    @ElementCollection
-    @CollectionTable(name="listOfPlaylists")
     private List<Integer> trackIds;
+
+    public Playlist(Long id, String name, List<Integer> trackIds) {
+        this.id = id;
+        this.name = name;
+        this.trackIds = trackIds;
+    }
 
     public Long getId() {
         return id;

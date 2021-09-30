@@ -1,7 +1,7 @@
 package com.grupp6.backend.configs;
 
 
-import com.grupp6.backend.entities.User;
+import com.grupp6.backend.models.DTO.UserDTO;
 import com.grupp6.backend.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -23,22 +23,22 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @PostConstruct
     private void createDefaultUsers(){
-        if (userRepo.findByUsername("user") == null) {
+        if (userRepo.findByEmail("user") == null) {
             addUser("email", "password", "firstName", "lastName");
         }
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepo.findByUsername(username);
+        UserDTO user = userRepo.findByEmail(username);
         if (user == null) {
             throw new UsernameNotFoundException("User not found by name: " + username);
         }
         return toUserDetails(user);
     }
 
-    public User addUser(String email, String password, String firstName, String lastName){
-        User user = new User(email, encoder.encode(password), firstName, lastName);
+    public UserDTO addUser(String email, String password, String firstName, String lastName){
+        UserDTO user = new UserDTO(email, encoder.encode(password), firstName, lastName);
         try {
             return userRepo.save(user);
         } catch (Exception ex) {
@@ -47,7 +47,7 @@ public class MyUserDetailsService implements UserDetailsService {
         return null;
     }
 
-    private UserDetails toUserDetails(User user) {
+    private UserDetails toUserDetails(UserDTO user) {
         // If you have a User entity you have to
         // use the userdetails User for this to work
         return org.springframework.security.core.userdetails.User
