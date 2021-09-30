@@ -1,5 +1,6 @@
 package com.grupp6.backend.configs;
 
+
 import com.grupp6.backend.entities.User;
 import com.grupp6.backend.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class MyUserDetailsService implements UserDetailsService {
     @PostConstruct
     private void createDefaultUsers(){
         if (userRepo.findByUsername("user") == null) {
-            addUser("user", "password");
+            addUser("email", "password", "firstName", "lastName");
         }
     }
 
@@ -36,8 +37,8 @@ public class MyUserDetailsService implements UserDetailsService {
         return toUserDetails(user);
     }
 
-    public User addUser(String username, String password){
-        User user = new User(username, encoder.encode(password), );
+    public User addUser(String email, String password, String firstName, String lastName){
+        User user = new User(email, encoder.encode(password), firstName, lastName);
         try {
             return userRepo.save(user);
         } catch (Exception ex) {

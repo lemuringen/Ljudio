@@ -22,5 +22,5 @@ public class UserService {
     }
 
     public User registerUser(User user) {
-        return myUserDetailsService.addUser(user.getEmail(), user.getPassword()); }
+        return myUserDetailsService.addUser(user.getEmail(), user.getPassword(), user.getFirstName(), user.getLastName()); }
 }
