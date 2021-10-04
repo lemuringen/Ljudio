@@ -1,12 +1,13 @@
 package com.grupp6.backend.controllers;
 
 import com.grupp6.backend.models.DTO.UserDTO;
+import com.grupp6.backend.models.User;
 import com.grupp6.backend.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api") // prefix for all mappings in this controller
+@RequestMapping("/api/login") // prefix for all mappings in this controller
 public class LoginController {
     @Autowired
     private UserService userService;
@@ -18,13 +19,13 @@ public class LoginController {
 
     // get logged in user
     @GetMapping("/whoami")
-    public UserDTO whoAmI() {
+    public User whoAmI() {
         return userService.findCurrentUser();
     }
 
     // register new user
     @PostMapping("/register")
-    public UserDTO register(@RequestBody UserDTO user) {
+    public User register(@RequestBody User user) {
         return userService.registerUser(user);
     }
 

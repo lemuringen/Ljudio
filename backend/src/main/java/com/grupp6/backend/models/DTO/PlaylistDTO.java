@@ -5,20 +5,19 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
-/*
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "playlists")*/
+@Table(name = "playlists")
 public class PlaylistDTO {
-  /*  @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
     @ElementCollection
-    @CollectionTable(name="listOfPlaylists")
-    private List<Integer> trackIds;
+    @CollectionTable(name = "listOfPlaylists")
+    private List<String> trackIds;
 
     public Long getId() {
         return id;
@@ -42,5 +41,5 @@ public class PlaylistDTO {
 
     public void setTrackIds(List trackIds) {
         this.trackIds = trackIds;
-    }*/
+    }
 }
