@@ -1,12 +1,12 @@
 package com.grupp6.backend.services;
 
 
+import com.grupp6.backend.DAO.PlaylistDAO;
 import com.grupp6.backend.models.DTO.PlaylistDTO;
 import com.grupp6.backend.models.Playlist;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/*
 @Service
 public class PlaylistService {
     private final PlaylistDAO playlistDAO;
@@ -26,4 +26,3 @@ public class PlaylistService {
                 playlist.getTrackIds());
     }
 }
-*/

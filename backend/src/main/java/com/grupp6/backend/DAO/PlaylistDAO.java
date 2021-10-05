@@ -7,14 +7,14 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-//@Repository
-//public class PlaylistDAO {
-//    private final PlaylistRepository playlistRepository;
-//
-//    @Autowired
-//    public PlaylistDAO(PlaylistRepository playlistRepository) {
-//       this.playlistRepository = playlistRepository;
-//    }
+@Repository
+public class PlaylistDAO {
+    private final PlaylistRepository playlistRepository;
+
+    @Autowired
+    public PlaylistDAO(PlaylistRepository playlistRepository) {
+       this.playlistRepository = playlistRepository;
+    }
 /* Unimplemented
     public PlaylistDTO addPlaylist(PlaylistDTO playlistDTO) {
         return null;
@@ -35,4 +35,4 @@ import java.util.Optional;
         return null;
     }
 */
-//}
+}

@@ -3,10 +3,6 @@ package com.grupp6.backend.configs;
 
 import com.grupp6.backend.DAO.UserDAO;
 import com.grupp6.backend.models.DTO.UserDTO;
-import com.grupp6.backend.models.User;
-import com.grupp6.backend.repositories.UserRepository;
-import com.grupp6.backend.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -35,7 +31,7 @@ public class MyUserDetailsService implements UserDetailsService {
     private void createDefaultUsers() {
         if (userDAO.findByEmail("email") == null) {
             UserDTO userDTO = new UserDTO();
-            userDTO.setEmail("email");
+            userDTO.setEmail("dolor@velit.com");
             userDTO.setPassword("password");
             userDTO.setFirstName("firstName");
             userDTO.setLastName("lastName");
