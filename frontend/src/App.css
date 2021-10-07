@@ -67,7 +67,19 @@ nav{
   margin-left: auto;
   margin-right: auto;
 }
-
+/*
+Home page
+ */
+.search-list-item-text-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 1vh;
+}
+.search-list-item{
+  display: flex;
+  flex-direction: row;
+}
 /*
 These rules will apply on screens that are 500px wide or larger.
 */
