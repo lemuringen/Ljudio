@@ -1,5 +1,6 @@
 import React from 'react'
 import './App.css'
+import './Navigation.css'
 import Navigation from './components/Navigation'
 import Player from './components/player'
 
@@ -16,7 +17,9 @@ function App() {
 
   return (
     <div className="App">
-      <Navigation />
+      <Router>
+        <Navigation />
+      </Router>
 
       <main>
 
