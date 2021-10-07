@@ -19,14 +19,13 @@ function App() {
     <div className="App">
       <Router>
         <Navigation />
+        <Route path="/" exact component={HomePage} />
+        <Route path="/PlaylistPage" exact component={PlaylistPage} />
       </Router>
 
       <main>
 
-        <Router>
-          <Route path="/" exact component={HomePage} />
-          <Route path="/PlaylistPage" exact component={PlaylistPage} />
-        </Router>
+
 
       </main>
 

@@ -10,7 +10,7 @@ export const SidebarData = [
     },
     {
         title: 'Playlist',
-        path: '/',
+        path: '/PlaylistPage',
         cName: 'nav-text'
     },
 ]
