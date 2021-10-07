@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import {BsThreeDotsVertical} from 'react-icons/bs'
 
 function HomePage() {
     const [input, setInput] = useState('')
@@ -30,11 +31,15 @@ function HomePage() {
                 <div>
                     {songs && songs.map(song => (
                         <div className="search-list-item" onClick={() => songClick(song)} key={song.videoId}>
-                            <img src={song.thumbnails[0].url}/>
+                            <div className="search-list-item-img-container"><img src={song.thumbnails[0].url}/></div>
                             <div className="search-list-item-text-container">
                                 <span className="search-list-item-song-row"> Song: {song.name}</span>
                                 <span className="search-list-item-artist-row"> Artist: {song.artist.name}</span>
                             </div>
+                            <div className="kebab-menu-container">
+                                <BsThreeDotsVertical />
+                            </div>
+
                         </div>
                     ))}
                 </div>
