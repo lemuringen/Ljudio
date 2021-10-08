@@ -1,4 +1,5 @@
 import React from 'react'
+import { useEffect } from 'react'
 import './App.css'
 import './Navigation.css'
 import './Login.css'
@@ -19,6 +20,16 @@ import PlaylistPage from './pages/PlaylistPage'
 
 
 function App() {
+
+  useEffect(() => {
+    callSpringboot()
+  }, [])
+
+  async function callSpringboot() {
+    let response = await fetch('/api/hello')
+    let message = await response.text()
+    console.log(message);
+  }
 
   return (
     <div className="App">
