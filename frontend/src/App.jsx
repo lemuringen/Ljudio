@@ -21,16 +21,6 @@ import PlaylistPage from './pages/PlaylistPage'
 
 function App() {
 
-  useEffect(() => {
-    callSpringboot()
-  }, [])
-
-  async function callSpringboot() {
-    let response = await fetch('/api/hello')
-    let message = await response.text()
-    console.log(message);
-  }
-
   return (
     <div className="App">
       <Router>

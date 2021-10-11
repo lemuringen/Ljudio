@@ -3,13 +3,13 @@ import React from 'react'
 function RegisterPage() {
     return (
         <div>
-            <input className="input-bar" type="text" placeholder="First name" />
+            <input id="firstName" name="firstName" className="input-bar" type="text" placeholder="First name" />
             <br />
-            <input className="input-bar" type="text" placeholder="Last name" />
+            <input id="lastName" name="lastName" className="input-bar" type="text" placeholder="Last name" />
             <br />
-            <input className="input-bar" type="text" placeholder="E-mail" />
+            <input id="mail" name="mail" className="input-bar" type="text" placeholder="E-mail" />
             <br />
-            <input className="input-bar" type="text" placeholder="Password" />
+            <input id="password" name="password" className="input-bar" type="text" placeholder="Password" />
             <br />
             <a href="#" class="confirm-btn">Register</a>
         </div>
