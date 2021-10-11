@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react'
 import {PlayerContext} from '../contexts/PlayerContext'
+import Progressbar from "./Progressbar";
 
 function Player() {
     // load player when this component mounts
@@ -85,13 +86,7 @@ function getDuration(){
                     <img className="next-btn" src="../src/img/next_btn.png" alt="next"/>
                 </div>
             </div>
-            <div class="time-nav">
-                <div id="current-time">{time}</div>
-                <div id="total-time">{getDuration()}</div>
-            </div>
-            <div class="progressbar-nav">
-                <div id="progressbar"></div>
-            </div>
+<Progressbar/>
         </footer>
     )
 }

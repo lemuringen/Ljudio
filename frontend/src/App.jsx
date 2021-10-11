@@ -1,5 +1,6 @@
 import React, {createContext, useState} from 'react'
 import { PlayerContext } from './contexts/PlayerContext'
+import{ProgressbarContext} from "./contexts/ProgressbarContext";
 
 import './App.css'
 import './Navigation.css'
