@@ -1,6 +1,7 @@
-import React, {useContext, useState} from 'react'
-import {PlayerContext} from '../contexts/PlayerContext'
-import {BsThreeDotsVertical} from 'react-icons/bs'
+import React, { useContext, useState } from 'react'
+import { PlayerContext } from '../contexts/PlayerContext'
+import { BsThreeDotsVertical } from 'react-icons/bs'
+import { AiOutlineSearch } from 'react-icons/ai'
 
 function HomePage() {
     const [input, setInput] = useState('')
@@ -22,26 +23,29 @@ function HomePage() {
     }
 
     return (
-        <div>
-            <h1>Home Page</h1>
+        <div className="home-holder">
             <div>
-                <input
-                    type="text"
-                    placeholder="search songs"
-                    onChange={e => setInput(e.target.value)}
-                />
-                <button onClick={searchSong}>Search</button>
-                <hr/>
+                <div className="search-input-box">
+                    <input
+                        className="input-bar"
+                        type="text"
+                        placeholder="Search songs"
+                        onChange={e => setInput(e.target.value)}
+                    />
+
+
+
+                </div>
                 <div>
                     {songs && songs.map(song => (
                         <div className="search-list-item" onClick={() => songClick(song)} key={song.videoId}>
-                            <div className="search-list-item-img-container"><img src={song.thumbnails[0].url}/></div>
+                            <div className="search-list-item-img-container"><img src={song.thumbnails[0].url} /></div>
                             <div className="search-list-item-text-container">
                                 <span className="search-list-item-song-row"> Song: {song.name}</span>
                                 <span className="search-list-item-artist-row"> Artist: {song.artist.name}</span>
                             </div>
                             <div className="kebab-menu-container">
-                                <BsThreeDotsVertical/>
+                                <BsThreeDotsVertical />
                             </div>
 
                         </div>
