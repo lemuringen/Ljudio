@@ -1,9 +1,12 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
+import {PlayerContext} from '../contexts/PlayerContext'
 import {BsThreeDotsVertical} from 'react-icons/bs'
 
 function HomePage() {
     const [input, setInput] = useState('')
     const [songs, setSongs] = useState()
+    const [currentVideoId, setCurrentVideoId] = useState()
+    const [context, updateContext] = useContext(PlayerContext)
 
     async function searchSong() {
         let response = await fetch('https://yt-music-api.herokuapp.com/api/yt/songs/' + input)
@@ -13,8 +16,9 @@ function HomePage() {
     }
 
     function songClick(song) {
-        console.log(song.name)
-        //  setCurrentVideoId(song.videoId)
+        updateContext({
+            currentSong: song
+        })
     }
 
     return (
@@ -37,7 +41,7 @@ function HomePage() {
                                 <span className="search-list-item-artist-row"> Artist: {song.artist.name}</span>
                             </div>
                             <div className="kebab-menu-container">
-                                <BsThreeDotsVertical />
+                                <BsThreeDotsVertical/>
                             </div>
 
                         </div>

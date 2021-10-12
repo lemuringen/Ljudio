@@ -44,6 +44,20 @@ header {
   max-width: 600px;
   text-align: center;
 }
+.pre-btn{
+  grid-column-start: 3;
+  grid-column-end: 3;
+  transform: rotate(180deg);
+}
+.play-pause-btn-container{
+  grid-column-start: 2;
+  grid-column-end: 2;
+}
+
+.pre-btn-container{
+  grid-column-start: 1;
+  grid-column-end: 1;
+}
 .time-nav{
   display:grid;
   grid-template-columns: 1fr 1fr;
