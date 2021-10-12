@@ -125,14 +125,13 @@ function Player() {
                     <img className="next-btn" src="../src/img/next_btn.png"
                          alt="next" onClick={nextSong}/>
                 </div>
-
             </div>
 
             <span className="progressbar-container">
                 <Progressbar/>
             </span>
             <span className="currently-playing-field">
-                <p5>{currentlyPlayingField}</p5>
+                {currentlyPlayingField}
             </span>
 
         </footer>

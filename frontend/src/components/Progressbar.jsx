@@ -15,8 +15,9 @@ function Progressbar() {
     });
 
     useEffect(() => {
-        if (!context.player && !context.currentSong) return;
+        if (!context.player) return;
         const intervalId = setInterval(() => {
+            if (!context.currentSong) return
             let currentTime = context.player.getCurrentTime()
             let duration = context.player.getDuration()
             let playedPercent = (currentTime / duration) * 100
@@ -49,7 +50,7 @@ function Progressbar() {
         h = parseInt(h);
         h = (h > 0 || maxTimeAboveHour ? (h < 10 ? "0" + h : h) + ":" : "")
         m = parseInt(m);
-      //  m = (m > 0 || maxTimeAboveMinute ? (m < 10 ? "0" + m : m) + ":" : "")
+        //  m = (m > 0 || maxTimeAboveMinute ? (m < 10 ? "0" + m : m) + ":" : "")
         m = (m < 10 ? "0" + m : m) + ":"
         s = parseInt(s)
         s = s < 10 ? "0" + s : s;
@@ -73,6 +74,7 @@ function Progressbar() {
             pending: true
         })
     }
+
     return (
         <div>
             <div className="time-nav">
