@@ -4,54 +4,38 @@ import {ProgressbarContext} from "../contexts/ProgressbarContext";
 
 function Progressbar() {
     const [context, updateContext] = useContext(PlayerContext)
-    const [progressbarContext, updateProgressbarContext] = useContext(ProgressbarContext)
     const [progress, setProgress] = useState(0)
-
-    const [pauseUpdate, setPauseUpdate] = useState(false)
 
     const [time, setTime] = useState("00:00")
     const [duration, setDuration] = useState("00:00")
 
-    const [counter, setCounter] = useState(0);
+    const [update, setUpdate] = useState({
+        pending: false,
+        package: null
+    });
 
-    let settingHandle = false;
-    // useEffect(() => {
-    //     if (!context.player && !context.currentSong) return;
-    //     setInterval(() => {
-    //
-    //         let currentTime = context.player.getCurrentTime()
-    //         let duration = context.player.getDuration()
-    //         let playedPercent = (currentTime / duration) * 100
-    //         setTime(formatTimeFromSeconds(currentTime, duration));
-    //         setDuration(formatTimeFromSeconds(duration));
-    //
-    //
-    //         // TODO: don't update when user is moving the slider
-    //         setProgress(playedPercent)
-    //
-    //     }, 100)
-    //   //  return clearInterval;
-    // })
     useEffect(() => {
         if (!context.player && !context.currentSong) return;
         const intervalId = setInterval(() => {
-            if(settingHandle) return;
             let currentTime = context.player.getCurrentTime()
             let duration = context.player.getDuration()
             let playedPercent = (currentTime / duration) * 100
-            // let increment = duration / (100 * 10)
             setTime(formatTimeFromSeconds(currentTime, duration));
             setDuration(formatTimeFromSeconds(duration));
-
-            // setProgress((p) => p + increment);
-            setProgress(() => playedPercent);
-
-        }, 100);
+            if (update.pending) {
+                setUpdate({
+                    pending: false,
+                    package: null
+                })
+            } else {
+                setProgress(playedPercent)
+            }
+        }, 200);
         return () => {
             return clearInterval(intervalId);
         };
 
-    });
+    }, [context.player, update]);
 
 
     function formatTimeFromSeconds(time, maxTime) {
@@ -65,47 +49,32 @@ function Progressbar() {
         h = parseInt(h);
         h = (h > 0 || maxTimeAboveHour ? (h < 10 ? "0" + h : h) + ":" : "")
         m = parseInt(m);
-        m = (m > 0 || maxTimeAboveMinute ? (m < 10 ? "0" + m : m) + ":" : "")
+      //  m = (m > 0 || maxTimeAboveMinute ? (m < 10 ? "0" + m : m) + ":" : "")
+        m = (m < 10 ? "0" + m : m) + ":"
         s = parseInt(s)
         s = s < 10 ? "0" + s : s;
         return "" + h + m + s;
     }
 
     function changeSongPosition(e) {
-        settingHandle  = true;
-        setTimeout(()=>{
-            settingHandle = false;
-        }, 2000);
-        setProgress(e.target.value)
-
-        let newPosition = context.player.getDuration() / Number(e.target.value)
-
-        // change position in song
-        context.player.seekTo(newPosition, true)
+        setUpdate({
+            pending: false,
+            package: Number(e.target.value)
+        })
+        setProgress(Number(e.target.value))
     }
-    // function changeSongPosition(e) {
-    //     setProgress(e.target.value)
-    //
-    // }
-    //
-    // function mouseUp() {
-    //     updateProgressbarContext({
-    //         isHandleHeld: false
-    //     })
-    //     let newPosition = context.player.getDuration() / progress
-    //     // change position in song
-    //     context.player.seekTo(newPosition, true)
-    // }
-    //
-    // function mouseDown() {
-    //     updateProgressbarContext({
-    //         isHandleHeld: true
-    //     })
-    // }
 
+
+    function mouseUp() {
+        let newPosition = context.player.getDuration() * (Number(update.package) / 100)
+        context.player.seekTo(newPosition, true)
+        setUpdate({
+            ...update,
+            pending: true
+        })
+    }
     return (
         <div>
-
             <div className="time-nav">
                 <div id="current-time">{time ? time : "00:00"}</div>
                 <div id="total-time">{duration ? duration : "00:00"}</div>
@@ -116,6 +85,7 @@ function Progressbar() {
                     className="slider"
                     value={progress}
                     onChange={changeSongPosition}
+                    onMouseUp={mouseUp}
                     type="range"
                     style={{width: '100%'}}
                 />

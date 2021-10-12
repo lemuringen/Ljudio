@@ -9,8 +9,8 @@ function HomePage() {
     const [currentVideoId, setCurrentVideoId] = useState()
     const [context, updateContext] = useContext(PlayerContext)
 
-    async function searchSong() {
-        let response = await fetch('https://yt-music-api.herokuapp.com/api/yt/songs/' + input)
+    async function searchSong(e) {
+        let response = await fetch('https://yt-music-api.herokuapp.com/api/yt/songs/' + e.target.value)
         let result = await response.json()
         console.log(result.content)
         setSongs(result.content)
