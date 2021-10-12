@@ -1,4 +1,5 @@
 package com.grupp6.backend.controllers;
+
 import com.grupp6.backend.models.User;
 import com.grupp6.backend.services.UserService;
 
@@ -24,6 +25,11 @@ public class LoginController {
     public User whoAmI() {
         return userService.findCurrentUser();
     }
+//
+//    @PostMapping("/login")
+//    public User login(@RequestBody User user) {
+//        return userService.login(user);
+//    }
 
     // register new user
     @PostMapping("/register")

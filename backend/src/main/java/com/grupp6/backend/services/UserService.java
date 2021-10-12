@@ -23,6 +23,7 @@ public class UserService {
         // the login session is stored between page reloads,
         // and we can access the current authenticated user with this
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
         return mapToUser(userDAO.findByEmail(username));
     }
 
@@ -30,6 +31,9 @@ public class UserService {
         UserDTO userDTO = myUserDetailsService.addUser(mapFromUser(user));
         return mapToUser(userDTO);
     }
+//    public User login(User user){
+////        myUserDetailsService.
+//    }
 
     public UserDTO mapFromUser(User user) {
         return new UserDTO(user.getId(), user.getEmail(),user.getPassword(), user.getFirstName(), user.getLastName());
