@@ -4,20 +4,20 @@ import { BsThreeDotsVertical } from 'react-icons/bs'
 import { AiOutlineSearch } from 'react-icons/ai'
 
 function HomePage() {
+    const [context, updateContext] = useContext(PlayerContext)
     const [input, setInput] = useState('')
     const [songs, setSongs] = useState()
-    const [currentVideoId, setCurrentVideoId] = useState()
-    const [context, updateContext] = useContext(PlayerContext)
+
 
     async function searchSong(e) {
         let response = await fetch('https://yt-music-api.herokuapp.com/api/yt/songs/' + e.target.value)
         let result = await response.json()
-        console.log(result.content)
         setSongs(result.content)
     }
 
     function songClick(song) {
         updateContext({
+            queue: songs,
             currentSong: song
         })
     }
@@ -47,7 +47,6 @@ function HomePage() {
                             <div className="kebab-menu-container">
                                 <BsThreeDotsVertical />
                             </div>
-
                         </div>
                     ))}
                 </div>
