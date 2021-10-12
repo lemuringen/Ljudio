@@ -13,6 +13,8 @@ function Progressbar() {
     const [duration, setDuration] = useState("00:00")
 
     const [counter, setCounter] = useState(0);
+
+    let settingHandle = false;
     // useEffect(() => {
     //     if (!context.player && !context.currentSong) return;
     //     setInterval(() => {
@@ -33,6 +35,7 @@ function Progressbar() {
     useEffect(() => {
         if (!context.player && !context.currentSong) return;
         const intervalId = setInterval(() => {
+            if(settingHandle) return;
             let currentTime = context.player.getCurrentTime()
             let duration = context.player.getDuration()
             let playedPercent = (currentTime / duration) * 100
@@ -69,9 +72,13 @@ function Progressbar() {
     }
 
     function changeSongPosition(e) {
+        settingHandle  = true;
+        setTimeout(()=>{
+            settingHandle = false;
+        }, 2000);
         setProgress(e.target.value)
 
-        let newPosition = context.player.getDuration() / e.target.value
+        let newPosition = context.player.getDuration() / Number(e.target.value)
 
         // change position in song
         context.player.seekTo(newPosition, true)
