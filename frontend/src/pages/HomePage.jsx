@@ -30,11 +30,8 @@ function HomePage() {
                         className="input-bar"
                         type="text"
                         placeholder="Search songs"
-                        onChange={e => setInput(e.target.value)}
+                        onChange={searchSong}
                     />
-
-
-
                 </div>
                 <div>
                     {songs && songs.map(song => (
