@@ -1,22 +1,22 @@
-import React from 'react'
-import { useEffect } from 'react'
+import React, {createContext, useState} from 'react'
+import { PlayerContext } from './contexts/PlayerContext'
+
 import './App.css'
 import './Navigation.css'
 import './Login.css'
-import Navigation from './components/Navigation'
-import Player from './components/player'
-
 
 import {
-  BrowserRouter as Router,
-  Route,
-  Link
+    BrowserRouter as Router,
+    Route,
+    Link
 } from 'react-router-dom'
 
 import Login from './pages/Login'
 import RegisterPage from './pages/RegisterPage'
 import HomePage from './pages/HomePage'
 import PlaylistPage from './pages/PlaylistPage'
+import Navigation from './components/Navigation'
+import Player from './components/Player'
 
 
 function App() {
@@ -34,14 +34,12 @@ function App() {
       <main>
 
 
-
       </main>
+            {/* update current song whenever the videoId changes */}
+            <Player />
 
-
-      <Player />
-
-    </div >
-  )
+      </div>
+    )
 }
 
 export default App
