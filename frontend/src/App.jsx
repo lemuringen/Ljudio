@@ -1,4 +1,4 @@
-import React, {createContext, useState} from 'react'
+import React, { createContext, useState } from 'react'
 
 import './App.css'
 import './Navigation.css'
@@ -18,6 +18,7 @@ import Navigation from './components/Navigation'
 import Player from './components/Player'
 import Login from './pages/Login'
 
+
 function App() {
 
     return (
@@ -34,7 +35,7 @@ function App() {
             {/* update current song whenever the videoId changes */}
             <Player />
 
-      </div>
+        </div>
     )
 }
 
