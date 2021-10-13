@@ -1,5 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 body {
   background-color: #2F2F2F;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato', sans-serif;
 }
 
 header {
@@ -10,7 +17,9 @@ header {
   display:grid;
   grid-template-columns: 1fr;
 }
+
 .nav-holder{
+  background-color: #181818;
   display:grid;
   grid-template-columns: 1fr 1fr;
   min-width: 400px;
@@ -18,20 +27,19 @@ header {
   margin-left: auto;
   margin-right: auto;
 }
-nav{
-  text-align: right;
-}
-.logo {
-  padding-top: 15px;
-}
-.burger-menu {
-  padding-top: 4px;
+.home-holder{
+  display:grid;
+  grid-template-columns: 1fr;
+  min-width: 400px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #footer {
   background-color: #181818;
   color: #fff;
-  height: 100px;
+  height: min-content;
   display:grid;
   grid-template-columns: 1fr;
   position: fixed;
@@ -44,6 +52,17 @@ nav{
   min-width: 400px;
   max-width: 600px;
   text-align: center;
+}
+.pre-btn{
+  transform: rotate(180deg);
+}
+.play-pause-btn-container{
+  grid-column-start: 2;
+  grid-column-end: 2;
+}
+.pre-btn-container{
+  grid-column-start: 1;
+  grid-column-end: 1;
 }
 .time-nav{
   display:grid;
@@ -90,13 +109,58 @@ nav{
   display: flex;
   flex-display: row;
 }
-.artist-image{
+.artist-image{}
+/*
+Home page
+ */
+.search-list-item-text-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  min-width: 80%;
+  color: white;
+}
+.search-list-item-img-container{
+  width: 12%;
+}
+.search-list-item{
+  display: flex;
+  width: auto;
+  padding: 3px 3px;
+  border-bottom: solid 1px #252525;
+}
+.kebab-menu-container{
+  display: flex;
+  justify-content: space-evenly;
+  align-content: space-between;
+  align-items: center;
+  color: #ffffff;
+  font-size: 180%;
+  width: 10%;
+}
+.search-input-box {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
+.search-input-box input {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+>>>>>>> main
 }
 /*
 These rules will apply on screens that are 500px wide or larger.
 */
 @media (min-width: 600px) { 
   .nav-holder {
+    background-color: #181818;
+    min-width: 600px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  } 
+  .home-holder {
     min-width: 600px;
     max-width: 800px;
     margin-left: auto;

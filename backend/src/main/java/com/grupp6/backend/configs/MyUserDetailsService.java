@@ -30,6 +30,7 @@ public class MyUserDetailsService implements UserDetailsService {
     @PostConstruct
     private void createDefaultUsers() {
         if (userDAO.findByEmail("email") == null) {
+
             UserDTO userDTO = new UserDTO();
             userDTO.setEmail("dolor@velit.com");
             userDTO.setPassword("password");
@@ -49,6 +50,11 @@ public class MyUserDetailsService implements UserDetailsService {
     }
 
     public UserDTO addUser(UserDTO userDTO) {
+        UserDTO encodedUserDTO = new UserDTO();
+        encodedUserDTO.setEmail(userDTO.getEmail());
+        encodedUserDTO.setPassword(encoder.encode(userDTO.getPassword()));
+        encodedUserDTO.setFirstName(userDTO.getFirstName());
+        encodedUserDTO.setLastName(userDTO.getLastName());
         try {
             return userDAO.save(userDTO);
         } catch (Exception ex) {

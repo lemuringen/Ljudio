@@ -2,11 +2,13 @@ package com.grupp6.backend.controllers;
 
 import com.grupp6.backend.models.User;
 import com.grupp6.backend.services.UserService;
+
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/login") // prefix for all mappings in this controller
 public class LoginController {
+
     private final UserService userService;
 
     public LoginController(UserService userService) {
@@ -23,11 +25,15 @@ public class LoginController {
     public User whoAmI() {
         return userService.findCurrentUser();
     }
+//
+//    @PostMapping("/login")
+//    public User login(@RequestBody User user) {
+//        return userService.login(user);
+//    }
 
     // register new user
     @PostMapping("/register")
     public User register(@RequestBody User user) {
         return userService.registerUser(user);
     }
-
 }
