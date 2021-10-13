@@ -26,17 +26,17 @@ function Progressbar() {
             if (update.pending) {
                 setUpdate({
                     pending: false,
-                    package: null
+                    package: 0
                 })
             } else {
-                setProgress(playedPercent)
+                setProgress(Number(playedPercent))
             }
         }, 200);
         return () => {
             return clearInterval(intervalId);
         };
 
-    }, [context.player, update]);
+    }, [context, update]);
 
 
     function formatTimeFromSeconds(time, maxTime) {
@@ -85,7 +85,7 @@ function Progressbar() {
 
                 <input
                     className="slider"
-                    value={progress}
+                    value={progress + ""}
                     onChange={changeSongPosition}
                     onMouseUp={mouseUp}
                     type="range"
