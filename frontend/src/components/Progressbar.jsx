@@ -1,6 +1,5 @@
 import React, {useState, useContext, useEffect} from 'react'
 import {PlayerContext} from '../contexts/PlayerContext'
-import {ProgressbarContext} from "../contexts/ProgressbarContext";
 
 function Progressbar() {
     const [context, updateContext] = useContext(PlayerContext)

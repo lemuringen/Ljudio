@@ -49,6 +49,107 @@ function Player() {
         }
     }
 
+
+    function startSong() {
+        if (!context.currentSong) return
+        player.loadVideoById(context.currentSong.videoId);
+    }
+
+    // run this every time videoId changes
+    useEffect(() => {
+        if (player && context.currentSong) {
+            startSong()
+        }
+    }, [context])
+
+    const [isPlaying, setPlaying] = useState(false)
+
+    const [currentlyPlayingField, setCurrentlyPlayingField] = useState("");
+    useEffect(() => {
+        if (!context.currentSong) return
+        setCurrentlyPlayingField(context.currentSong.artist.name + " - " + context.currentSong.name)
+    }, [context.currentSong])
+
+    /*>>>Buttons>>>*/
+    const [playBtnSrc, setPlayBtnSrc] = useState("../src/img/play_btn.png")
+    const [nextBtnSrc, setNextBtnSrc] = useState("../src/img/next_btn.png")
+    const [previousBtnSrc, setPreviousBtnSrc] = useState("../src/img/next_btn.png")
+    const [playBtn, setPlayBtn] = useState({
+            hover: false
+        }
+    )
+    const [nextBtn, setNextBtn] = useState({
+            hover: false
+        }
+    )
+    const [previousBtn, setPreviousBtn] = useState({
+            hover: false
+        }
+    )
+    let buttons = {
+        play: {
+            standard: "../src/img/play_btn.png",
+            hover: "../src/img/play_btn_hover.png"
+        },
+        pause: {
+            standard: "../src/img/pause_btn.png",
+            hover: "../src/img/pause_btn_hover.png"
+        },
+        next: {
+            standard: "../src/img/next_btn.png",
+            hover: "../src/img/next_btn_hover.png"
+        },
+        previous: {
+            standard: "../src/img/next_btn.png",
+            hover: "../src/img/next_btn_hover.png"
+        }
+    }
+
+    function hoverPlay(isHovering) {
+        setPlayBtn({
+            hover: isHovering
+        })
+    }
+
+    function hoverNext(isHovering) {
+        setNextBtn({
+            hover: isHovering
+        })
+    }
+
+    function hoverPrevious(isHovering) {
+        setPreviousBtn(
+            {hover: isHovering
+        })
+    }
+
+    function togglePlay() {
+        let willPlay = isPlaying ? false : true
+        if (willPlay) {
+            player.playVideo();
+
+        } else if (!willPlay) {
+            player.pauseVideo();
+        }
+
+    }
+    useEffect(() => {
+        if (!isPlaying) {
+            setPlayBtnSrc(playBtn.hover ? buttons.play.hover : buttons.play.standard)
+        } else {
+            setPlayBtnSrc(playBtn.hover ? buttons.pause.hover : buttons.pause.standard)
+        }
+
+    }, [isPlaying, playBtn.hover])
+
+    useEffect(() => {
+        setNextBtnSrc(nextBtn.hover ? buttons.next.hover : buttons.next.standard)
+    }, [nextBtn])
+
+    useEffect(() => {
+        setPreviousBtnSrc(previousBtn.hover ? buttons.previous.hover : buttons.previous.standard)
+    }, [previousBtn])
+//todo generalise and combine next/previous
     useEffect(() => {
         if (!previousSongPending) return
         setPreviousSongPending(false)
@@ -82,48 +183,7 @@ function Player() {
         setPreviousSongPending(true)
     }
 
-    function startSong() {
-        if (!context.currentSong) return
-        player.loadVideoById(context.currentSong.videoId);
-    }
-
-    // run this every time videoId changes
-    useEffect(() => {
-        if (player && context.currentSong) {
-            startSong()
-        }
-    }, [context])
-    const [playPauseBtnSrc, setPlayPauseBtnSrc] = useState("../src/img/play_btn.png")
-    const [isPlaying, setPlaying] = useState(false)
-
-    const [currentlyPlayingField, setCurrentlyPlayingField] = useState("");
-    useEffect(() => {
-        if (!context.currentSong) return
-        setCurrentlyPlayingField(context.currentSong.artist.name + " - " + context.currentSong.name)
-    }, [context.currentSong])
-
-    function togglePlayPause() {
-        setPlaying(isPlaying ? false : true)
-        if (isPlaying) {
-            setPlaying(false)
-            player.pauseVideo();
-
-        } else if (!isPlaying) {
-            setPlaying(true)
-            player.playVideo();
-        }
-    }
-
-    useEffect(() => {
-        if (!context.currentSong) return
-        if (isPlaying) {
-            setPlayPauseBtnSrc("../src/img/pause_btn.png")
-        } else if (!isPlaying) {
-            setPlayPauseBtnSrc("../src/img/play_btn.png")
-        }
-    }, [isPlaying])
-
-
+    /*<<<Buttons<<<*/
     return (
         <footer id="footer">
             <div class="player-nav">
@@ -131,24 +191,32 @@ function Player() {
                 <div className="pre-btn-container">
                     <input type="image"
                            className="pre-btn"
-                           src="../src/img/next_btn.png"
-                            alt="previous"
-                           onClick={previousSong}/>
+                           src={previousBtnSrc}
+                           alt="previous"
+                           onClick={previousSong}
+                           onMouseOver={() => hoverPrevious(true)}
+                           onMouseLeave={() => hoverPrevious(false)}
+                    />
                 </div>
                 <div className="play-pause-btn-container">
                     <input type="image"
                            className={"play-btn"}
-                           src={playPauseBtnSrc}
+                           src={playBtnSrc}
                            alt="play/pause"
-                           onClick={togglePlayPause}/>
+                           onClick={togglePlay}
+                           onMouseOver={() => hoverPlay(true)}
+                           onMouseLeave={() => hoverPlay(false)}
+                    />
                 </div>
                 <div className="next-btn-container">
                     <input type="image"
                            className="next-btn"
-                           src="../src/img/next_btn.png"
+                           src={nextBtnSrc}
                            alt="next"
                            onClick={nextSong}
-                            on/>
+                           onMouseOver={() => hoverNext(true)}
+                           onMouseLeave={() => hoverNext(false)}
+                    />
 
                 </div>
             </div>
