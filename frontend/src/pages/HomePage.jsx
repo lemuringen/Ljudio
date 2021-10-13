@@ -70,6 +70,7 @@ function HomePage() {
                 </div>
 
                 <div>
+
                     {songs && songs.map(song => (
                         <div className="search-list-item" onClick={() => songClick(song)} key={song.videoId}>
                             <div className="search-list-item-img-container"><img src={song.thumbnails[0].url} /></div>
@@ -83,6 +84,20 @@ function HomePage() {
 
                         </div>
                     ))}
+                    {/* *** Artist search ***
+                    {songs && songs.map(song => (
+                        <div className="search-list-item" onClick={() => songClick(song)} key={song.browseId}>
+                            <div className="search-list-item-img-container"><img src={song.thumbnails[0].url} /></div>
+                            <div className="search-list-item-text-container">
+                                <span className="search-list-item-artist-row"> Artist: {song.name}</span>
+                            </div>
+                            <div className="kebab-menu-container">
+                                <BsThreeDotsVertical />
+                            </div>
+
+                        </div>
+                    ))}
+                    */}
                 </div>
             </div>
         </div>
