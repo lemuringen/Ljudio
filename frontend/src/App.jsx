@@ -3,6 +3,7 @@ import React, { createContext, useState } from 'react'
 import './App.css'
 import './Navigation.css'
 import './Login.css'
+import './SwitchStyle.css'
 
 import {
     BrowserRouter as Router,

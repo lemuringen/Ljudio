@@ -43,20 +43,31 @@ function HomePage() {
                     />
                 </div>
 
-                <form>
-                    <label>
+                <div class="container">
+                    <div class="switch">
                         <input type="radio"
+                            class="switch-input"
+                            name="view"
                             value="songs"
+                            id="songs"
                             checked={searchFilter === "songs"}
-                            onChange={setSearchSongs} />
-                    </label>
-                    <label>
+                            onChange={setSearchSongs}
+                        />
+                        <label for="songs" class="switch-label switch-label-off">Songs</label>
+
                         <input type="radio"
+                            class="switch-input"
+                            name="view"
                             value="artists"
+                            id="artists"
                             checked={searchFilter === "artists"}
-                            onChange={setSearchArtists} />
-                    </label>
-                </form>
+                            onChange={setSearchArtists}
+                        />
+                        <label for="artists" class="switch-label switch-label-on">Artists</label>
+
+                        <span class="switch-selection"></span>
+                    </div>
+                </div>
 
                 <div>
                     {songs && songs.map(song => (
