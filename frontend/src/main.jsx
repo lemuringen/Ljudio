@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
 import PlayerContextProvider from './contexts/PlayerContext'
-import ProgressbarContextProvider from "./contexts/ProgressbarContext";
+import SearchContextProvider from "./contexts/SearchContext";
 
 ReactDOM.render(
     <React.StrictMode>
         <PlayerContextProvider>
-            <ProgressbarContextProvider>
+                <SearchContextProvider>
                 <App/>
-            </ProgressbarContextProvider>
+                </SearchContextProvider>
         </PlayerContextProvider>
     </React.StrictMode>,
     document.getElementById('root')
