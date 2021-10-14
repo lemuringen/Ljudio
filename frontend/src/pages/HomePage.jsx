@@ -5,23 +5,33 @@ import SearchList from '../components/SearchList'
 import Popup from '../components/Popup'
 
 
+
 function HomePage() {
+    const [context, updateContext] = useContext(PlayerContext)
     const [input, setInput] = useState('')
     const [songs, setSongs] = useState()
     const [searchFilter, setSearchFilter] = useState("songs")
     const [currentVideoId, setCurrentVideoId] = useState()
-    const [context, updateContext] = useContext(PlayerContext)
 
 
     async function searchSong(e) {
         let response = await fetch('https://yt-music-api.herokuapp.com/api/yt/' + searchFilter + '/' + e.target.value)
+        if((e.target.value).length === 0) return
         let result = await response.json()
         console.log(result.content)
         setSongs(result.content)
     }
 
+    async function fetchAlbum(e) {
+        if((e.target.value).length === 0) return
+        let response = await fetch('https://yt-music-api.herokuapp.com/api/yt/album/browseId' + e.target.value)
+        let result = await response.json()
+        console.log(result.content)
+        setSongs(result.content)
+    }
     function songClick(song) {
         updateContext({
+            queue: songs,
             currentSong: song
         })
     }

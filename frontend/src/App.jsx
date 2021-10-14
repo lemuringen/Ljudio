@@ -16,9 +16,11 @@ import {
 import RegisterPage from './pages/RegisterPage'
 import HomePage from './pages/HomePage'
 import PlaylistPage from './pages/PlaylistPage'
+
 import Navigation from './components/Navigation'
 import Player from './components/Player'
 import Login from './pages/Login'
+import ArtistPage from "./pages/ArtistPage";
 
 
 function App() {
@@ -31,6 +33,7 @@ function App() {
                 <Route path="/PlaylistPage" exact component={PlaylistPage} />
                 <Route path="/Login" exact component={Login} />
                 <Route path="/Register" exact component={RegisterPage} />
+                <Route path="/artist/:id" component={ArtistPage}/>
             </Router>
             <main>
             </main>
@@ -39,6 +42,7 @@ function App() {
 
         </div>
     )
+
 }
 
 export default App
