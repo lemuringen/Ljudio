@@ -37,7 +37,13 @@
 .album-container {
     padding: 5px;
 }
-
+.social-media-bar {
+    color: #FFF;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 0px;
+    font-size: 40px;
+}
 @media (min-width: 600px) { 
     
     .album-grid{

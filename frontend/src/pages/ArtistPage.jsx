@@ -1,6 +1,6 @@
-import React, {useContext, useEffect, useState} from 'react'
-import {FaFacebook, FaTwitter, FaReddit} from 'react-icons/fa';
-import {useParams} from "react-router-dom";
+import React, { useContext, useEffect, useState } from 'react'
+import { FaFacebook, FaTwitter, FaReddit } from 'react-icons/fa';
+import { useParams } from "react-router-dom";
 
 import {
     FacebookShareButton,
@@ -8,7 +8,7 @@ import {
     RedditShareButton
 
 } from "react-share";
-import {PlayerContext} from "../contexts/PlayerContext"; // https://github.com/nygardk/react-share/
+import { PlayerContext } from "../contexts/PlayerContext"; // https://github.com/nygardk/react-share/
 function ArtistPage() {
     let { id } = useParams();
     const [albums, setAlbums] = useState()
@@ -53,8 +53,8 @@ function ArtistPage() {
         let result = await response.json()
         updatePlayerContext({
             queue: result.tracks,
-                currentSong: result.tracks[0]
-            }
+            currentSong: result.tracks[0]
+        }
         )
     }
 
@@ -69,33 +69,34 @@ function ArtistPage() {
                 </div>
 
                 <div className="artist-description">{artistDescription}</div>
-                <FacebookShareButton
-                    url={window.location.href}
-                    hashtag="#wanderlust">
-                    <FaFacebook/>
-                </FacebookShareButton>
-                <TwitterShareButton
-                    url={window.location.href}
-                    hashtag="#kämpaPå">
-                    <FaTwitter/>
-                </TwitterShareButton>
-                <RedditShareButton
-                    url={window.location.href}
-                    hashtag="#carpeDiem">
-                    <FaReddit/>
-                </RedditShareButton>
-
+                <div className="social-media-bar">
+                    <FacebookShareButton
+                        url={window.location.href}
+                        hashtag="#wanderlust">
+                        <FaFacebook />
+                    </FacebookShareButton>
+                    <TwitterShareButton
+                        url={window.location.href}
+                        hashtag="#kämpaPå">
+                        <FaTwitter />
+                    </TwitterShareButton>
+                    <RedditShareButton
+                        url={window.location.href}
+                        hashtag="#carpeDiem">
+                        <FaReddit />
+                    </RedditShareButton>
+                </div>
             </section>
             <section className="albums">
                 <h1>Album</h1>
                 <div className={"album-grid"}>
                     {albums && albums.map(album => (
                         <div className="album-container" key={album.browseId} onClick={() => fetchAlbum(album)}>
-                            <img src={album.thumbnails[0].url}/>
+                            <img src={album.thumbnails[0].url} />
                             <span>
                                 <p>{album.name}</p>
                                 <p>Realeased: {album.year}</p>
-                    </span>
+                            </span>
                         </div>
                     ))
                     }
