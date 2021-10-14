@@ -1,18 +1,18 @@
-import React, {useEffect, useState} from 'react'
-import {FaFacebook, FaInstagram, FaTwitter} from 'react-icons/fa';
-import {useParams} from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
+import { useParams } from "react-router-dom";
 
 function ArtistPage() {
-    let {id} = useParams();
+    let { id } = useParams();
     const [albums, setAlbums] = useState()
     const [artist, setArtist] = useState()
     const [artistImageSrc, setArtistImageSrc] = useState("")
     const [artistDescription, setArtisDescription] = useState("")
 
     useEffect
-    (() => {
-        searchArtist()
-    }, [id])
+        (() => {
+            searchArtist()
+        }, [id])
 
 
     async function searchArtist() {
@@ -22,13 +22,13 @@ function ArtistPage() {
     }
 
     useEffect
-    (() => {
-        if (!artist || artist === undefined) return
-        searchAlbums()
-        setArtistImageSrc(artist.thumbnails[0].url)
-        setArtisDescription(artist.description)
+        (() => {
+            if (!artist || artist === undefined) return
+            searchAlbums()
+            setArtistImageSrc(artist.thumbnails[0].url)
+            setArtisDescription(artist.description)
 
-    }, [artist, artistImageSrc])
+        }, [artist, artistImageSrc])
 
 
     async function searchAlbums() {
@@ -40,15 +40,15 @@ function ArtistPage() {
 
 
     return (
-        <div className="artist-page-container">
+        <div className="artist-page-container home-holder">
             <section className="artist-details">
                 <div>
                     <h1 className="artist-name"></h1>
                 </div>
-                <div>
-                    <img src={artistImageSrc}/>
+                <div className="artist-image">
+                    <img src={artistImageSrc} />
                 </div>
-                <div>{artistDescription}</div>
+                <div className="artist-description">{artistDescription}</div>
 
             </section>
             <section className="albums">
@@ -56,14 +56,13 @@ function ArtistPage() {
                 <div className={"album-grid"}>
                     {albums && albums.map(album => (
                         <div className="album-container" key={album.browseId}>
-                            <input
-                                type="image"/>
-                            <img src={album.thumbnails[0].url}/>
+
+                            <img src={album.thumbnails[0].url} />
                             <span>
                                 <p>{album.name}</p>
                                 <p>Realeased: {album.year}</p>
 
-                    </span>
+                            </span>
                         </div>
                     ))
                     }
