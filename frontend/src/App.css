@@ -108,6 +108,12 @@ Home page
   padding: 3px 3px;
   border-bottom: solid 1px #252525;
 }
+.search-list-item{
+  display: flex;
+  width: auto;
+  padding: 3px 3px;
+  border-bottom: solid 1px #252525;
+}
 .kebab-menu-container{
   display: flex;
   justify-content: space-evenly;
