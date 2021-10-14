@@ -1,7 +1,7 @@
-import React, { useContext, useState, useEffect } from 'react'
-import { PlayerContext } from '../contexts/PlayerContext'
-import { SearchContext } from "../contexts/SearchContext";
-import { BsThreeDotsVertical } from 'react-icons/bs'
+import React, {useContext, useState, useEffect} from 'react'
+import {PlayerContext} from '../contexts/PlayerContext'
+import {SearchContext} from "../contexts/SearchContext";
+import {BsThreeDotsVertical} from 'react-icons/bs'
 import SearchList from "../components/SearchList";
 import Popup from '../components/Popup'
 
@@ -18,6 +18,7 @@ function SongList() {
         setSongs(searchContext.list)
         setDoRender(true)
     }, [searchContext])
+
     function songClick(song) {
         updatePlayerContext({
             currentSong: song
@@ -30,7 +31,7 @@ function SongList() {
         <div>
             {doRender && songs.map(song => (
                 <div className="search-list-item" onClick={() => songClick(song)} key={song.videoId}>
-                    <div className="search-list-item-img-container"><img src={song.thumbnails[0].url} /></div>
+                    <div className="search-list-item-img-container"><img src={song.thumbnails[0].url}/></div>
                     <div className="search-list-item-text-container">
                         <span className="search-list-item-song-row"> Song: {song.name}</span>
                         <span className="search-list-item-artist-row"> Artist: {song.artist.name}</span>
@@ -48,8 +49,11 @@ function SongList() {
                             </li>
                         </ul>
                     </Popup>
+
                 </div>
             ))}
+
+
         </div>)
 }
 
