@@ -1,28 +1,16 @@
 import React, {useEffect, useState} from 'react'
-import {FaFacebook, FaTwitter, FaInstagram} from 'react-icons/fa';
+import {FaFacebook, FaTwitter, FaReddit} from 'react-icons/fa';
 import {useParams} from "react-router-dom";
-import {
-    EmailShareButton,
-    FacebookShareButton,
-    HatenaShareButton,
-    InstapaperShareButton,
-    LineShareButton,
-    LinkedinShareButton,
-    LivejournalShareButton,
-    MailruShareButton,
-    OKShareButton,
-    PinterestShareButton,
-    PocketShareButton,
-    RedditShareButton,
-    TelegramShareButton,
-    TumblrShareButton,
-    TwitterShareButton,
-    ViberShareButton,
-    VKShareButton,
-    WhatsappShareButton,
-    WorkplaceShareButton
-} from "react-share";
 
+import {
+    FacebookShareButton,
+    TwitterShareButton,
+    RedditShareButton,
+
+    // Comment to sepaate, overwriting codesandbox behavior
+    FacebookIcon,
+
+} from "react-share"; // https://github.com/nygardk/react-share/
 function ArtistPage() {
     let {id} = useParams();
     const [albums, setAlbums] = useState()
@@ -70,7 +58,21 @@ function ArtistPage() {
                     <img src={artistImageSrc}/>
                 </div>
                 <div>{artistDescription}</div>
-       FacebookShareButton
+                <FacebookShareButton
+                    url={window.location.href}
+                    hashtag="#wanderlust">
+                    <FaFacebook/>
+                </FacebookShareButton>
+                <TwitterShareButton
+                    url={window.location.href}
+                    hashtag="#kämpaPå">
+                    <FaTwitter/>
+                </TwitterShareButton>
+                <RedditShareButton
+                    url={window.location.href}
+                    hashtag="#carpeDiem">
+                    <FaReddit/>
+                </RedditShareButton>
             </section>
             <section className="albums">
                 <h1>Album</h1>
@@ -83,7 +85,6 @@ function ArtistPage() {
                             <span>
                                 <p>{album.name}</p>
                                 <p>Realeased: {album.year}</p>
-
                     </span>
                         </div>
                     ))
