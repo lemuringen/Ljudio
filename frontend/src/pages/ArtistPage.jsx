@@ -57,7 +57,7 @@ function ArtistPage() {
                     {albums && albums.map(album => (
                         <div className="album-container" key={album.browseId}>
                             <input
-                            type="image"/>
+                                type="image"/>
                             <img src={album.thumbnails[0].url}/>
                             <span>
                                 <p>{album.name}</p>
