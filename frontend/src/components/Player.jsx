@@ -1,5 +1,5 @@
-import React, {useState, useEffect, useContext} from 'react'
-import {PlayerContext} from '../contexts/PlayerContext'
+import React, { useState, useEffect, useContext } from 'react'
+import { PlayerContext } from '../contexts/PlayerContext'
 import Progressbar from "./Progressbar";
 
 function Player() {
@@ -75,16 +75,16 @@ function Player() {
     const [nextBtnSrc, setNextBtnSrc] = useState("../src/img/next_btn.png")
     const [previousBtnSrc, setPreviousBtnSrc] = useState("../src/img/next_btn.png")
     const [playBtn, setPlayBtn] = useState({
-            hover: false
-        }
+        hover: false
+    }
     )
     const [nextBtn, setNextBtn] = useState({
-            hover: false
-        }
+        hover: false
+    }
     )
     const [previousBtn, setPreviousBtn] = useState({
-            hover: false
-        }
+        hover: false
+    }
     )
     let buttons = {
         play: {
@@ -119,8 +119,9 @@ function Player() {
 
     function hoverPrevious(isHovering) {
         setPreviousBtn(
-            {hover: isHovering
-        })
+            {
+                hover: isHovering
+            })
     }
 
     function togglePlay() {
@@ -148,7 +149,7 @@ function Player() {
     useEffect(() => {
         setPreviousBtnSrc(previousBtn.hover ? buttons.previous.hover : buttons.previous.standard)
     }, [previousBtn])
-//todo generalise and combine next/previous
+    //todo generalise and combine next/previous
     useEffect(() => {
         if (!previousSongPending) return
         setPreviousSongPending(false)
@@ -185,43 +186,43 @@ function Player() {
     /*<<<Buttons<<<*/
     return (
         <footer id="footer">
-            <div class="player-nav">
+            <div className="player-nav">
                 <div id="yt-player"></div>
                 <div className="pre-btn-container">
                     <input type="image"
-                           className="pre-btn"
-                           src={previousBtnSrc}
-                           alt="previous"
-                           onClick={previousSong}
-                           onMouseOver={() => hoverPrevious(true)}
-                           onMouseLeave={() => hoverPrevious(false)}
+                        className="pre-btn"
+                        src={previousBtnSrc}
+                        alt="previous"
+                        onClick={previousSong}
+                        onMouseOver={() => hoverPrevious(true)}
+                        onMouseLeave={() => hoverPrevious(false)}
                     />
                 </div>
                 <div className="play-pause-btn-container">
                     <input type="image"
-                           className={"play-btn"}
-                           src={playBtnSrc}
-                           alt="play/pause"
-                           onClick={togglePlay}
-                           onMouseOver={() => hoverPlay(true)}
-                           onMouseLeave={() => hoverPlay(false)}
+                        className={"play-btn"}
+                        src={playBtnSrc}
+                        alt="play/pause"
+                        onClick={togglePlay}
+                        onMouseOver={() => hoverPlay(true)}
+                        onMouseLeave={() => hoverPlay(false)}
                     />
                 </div>
                 <div className="next-btn-container">
                     <input type="image"
-                           className="next-btn"
-                           src={nextBtnSrc}
-                           alt="next"
-                           onClick={nextSong}
-                           onMouseOver={() => hoverNext(true)}
-                           onMouseLeave={() => hoverNext(false)}
+                        className="next-btn"
+                        src={nextBtnSrc}
+                        alt="next"
+                        onClick={nextSong}
+                        onMouseOver={() => hoverNext(true)}
+                        onMouseLeave={() => hoverNext(false)}
                     />
 
                 </div>
             </div>
 
             <span className="progressbar-container">
-                <Progressbar/>
+                <Progressbar />
             </span>
             <span className="currently-playing-field">
                 {currentlyPlayingField}

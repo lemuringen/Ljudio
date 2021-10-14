@@ -1,7 +1,6 @@
-import React, {useContext, useEffect, useState} from 'react'
-import {PlayerContext} from '../contexts/PlayerContext'
-import {SearchContext} from "../contexts/SearchContext";
-import {BsThreeDotsVertical} from 'react-icons/bs'
+import React, { useContext, useEffect, useState } from 'react'
+import { PlayerContext } from '../contexts/PlayerContext'
+import { SearchContext } from "../contexts/SearchContext";
 import SearchList from "../components/SearchList";
 import SongList from "../components/SongList";
 import ArtistList from "../components/ArtistList";
@@ -16,7 +15,7 @@ function HomePage() {
     const [searchContext, updateSearchContext] = useContext(SearchContext)
     const [searchWord, setSearchWord] = useState("")
 
-    async function search (searchWord) {
+    async function search(searchWord) {
         let response = await fetch('https://yt-music-api.herokuapp.com/api/yt/' + searchFilter + '/' + searchWord)
         let result = await response.json()
         setSongs(result.content)
@@ -26,7 +25,7 @@ function HomePage() {
         setSearchWord(e.target.value)
     }
     async function fetchAlbum(e) {
-        if((e.target.value).length === 0) return
+        if ((e.target.value).length === 0) return
         let response = await fetch('https://yt-music-api.herokuapp.com/api/yt/album/browseId' + e.target.value)
         let result = await response.json()
         console.log(result.content)
@@ -42,7 +41,7 @@ function HomePage() {
 
     useEffect(() => {
         if (searchWord === "") return
-        search (searchWord)
+        search(searchWord)
     }, [searchFilter, searchWord])
 
     useEffect(() => {
@@ -51,7 +50,7 @@ function HomePage() {
         updateSearchContext({
             type: searchFilter,
             list: songs
-        },)
+        })
     }, [songs])
 
     function setSearchArtists() {
@@ -75,35 +74,35 @@ function HomePage() {
                         onChange={updateSearchWord}
                     />
                 </div>
-                <div class="container">
-                    <div class="switch">
+                <div className="container">
+                    <div className="switch">
                         <input type="radio"
-                               class="switch-input"
-                               name="view"
-                               value="songs"
-                               id="songs"
-                               checked={searchFilter === "songs"}
-                               onChange={setSearchSongs}
+                            className="switch-input"
+                            name="view"
+                            value="songs"
+                            id="songs"
+                            checked={searchFilter === "songs"}
+                            onChange={setSearchSongs}
                         />
-                        <label for="songs" class="switch-label switch-label-off">Songs</label>
+                        <label for="songs" className="switch-label switch-label-off">Songs</label>
 
                         <input type="radio"
-                               class="switch-input"
-                               name="view"
-                               value="artists"
-                               id="artists"
-                               checked={searchFilter === "artists"}
-                               onChange={setSearchArtists}
+                            className="switch-input"
+                            name="view"
+                            value="artists"
+                            id="artists"
+                            checked={searchFilter === "artists"}
+                            onChange={setSearchArtists}
                         />
-                        <label for="artists" class="switch-label switch-label-on">Artists</label>
+                        <label for="artists" className="switch-label switch-label-on">Artists</label>
 
-                        <span class="switch-selection"></span>
+                        <span className="switch-selection"></span>
                     </div>
                 </div>
                 <div>
 
-                    <SongList/>
-                    <ArtistList/>
+                    <SongList />
+                    <ArtistList />
 
 
                 </div>

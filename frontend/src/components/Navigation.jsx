@@ -12,10 +12,10 @@ function Navigation() {
 
     return (
         <header>
-            <div class="nav-holder">
+            <div className="nav-holder">
                 <div>
                     <a href="#">
-                        <img class="logo" src="../src/img/logga_ljudio.png" alt="Ljudio logo" />
+                        <img className="logo" src="../src/img/logga_ljudio.png" alt="Ljudio logo" />
                     </a>
                 </div>
                 <div className="navbar">

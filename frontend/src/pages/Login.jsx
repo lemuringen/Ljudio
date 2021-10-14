@@ -18,7 +18,7 @@ function Login() {
             body: credentials
         });
 
-        if(response.url.includes('error')) {
+        if (response.url.includes('error')) {
             console.log('Wrong username/password');
         }
     }
@@ -41,8 +41,8 @@ function Login() {
             <br />
             <input id="password" name="password" className="input-bar" type="text" placeholder="Password" />
             <br />
-            <a href="#" class="register-link">Register here</a>
-            <a href="#" onClick={customLogin} class="confirm-btn">Login</a>
+            <a href="#" className="register-link">Register here</a>
+            <a href="#" onClick={customLogin} className="confirm-btn">Login</a>
             <a href="#" onClick={whoAmI} className="confirm-btn">Är jag inloggad?</a>
         </div >
     )

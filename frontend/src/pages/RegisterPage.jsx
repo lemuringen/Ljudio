@@ -37,7 +37,7 @@ function RegisterPage() {
             <br />
             <input id="password" name="password" className="input-bar" type="text" placeholder="Password" />
             <br />
-            <a href="#" onClick={register} class="confirm-btn">Register</a>
+            <a href="#" onClick={register} className="confirm-btn">Register</a>
         </div>
     )
 }
