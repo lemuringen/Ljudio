@@ -10,7 +10,7 @@ import {
 } from "react-share";
 import {PlayerContext} from "../contexts/PlayerContext"; // https://github.com/nygardk/react-share/
 function ArtistPage() {
-    let {id} = useParams();
+    let { id } = useParams();
     const [albums, setAlbums] = useState()
     const [artist, setArtist] = useState()
     const [artistImageSrc, setArtistImageSrc] = useState("")
@@ -18,9 +18,9 @@ function ArtistPage() {
     const [playerContext, updatePlayerContext] = useContext(PlayerContext)
 
     useEffect
-    (() => {
-        searchArtist()
-    }, [id])
+        (() => {
+            searchArtist()
+        }, [id])
 
 
     async function searchArtist() {
@@ -30,13 +30,13 @@ function ArtistPage() {
     }
 
     useEffect
-    (() => {
-        if (!artist || artist === undefined) return
-        searchAlbums()
-        setArtistImageSrc(artist.thumbnails[0].url)
-        setArtisDescription(artist.description)
+        (() => {
+            if (!artist || artist === undefined) return
+            searchAlbums()
+            setArtistImageSrc(artist.thumbnails[0].url)
+            setArtisDescription(artist.description)
 
-    }, [artist, artistImageSrc])
+        }, [artist, artistImageSrc])
 
     function albumClick() {
 
@@ -59,15 +59,16 @@ function ArtistPage() {
     }
 
     return (
-        <div className="artist-page-container">
+        <div className="artist-page-container home-holder">
             <section className="artist-details">
                 <div>
                     <h1 className="artist-name"></h1>
                 </div>
-                <div>
-                    <img src={artistImageSrc}/>
+                <div className="artist-image">
+                    <img src={artistImageSrc} />
                 </div>
-                <div>{artistDescription}</div>
+
+                <div className="artist-description">{artistDescription}</div>
                 <FacebookShareButton
                     url={window.location.href}
                     hashtag="#wanderlust">
@@ -83,6 +84,7 @@ function ArtistPage() {
                     hashtag="#carpeDiem">
                     <FaReddit/>
                 </RedditShareButton>
+
             </section>
             <section className="albums">
                 <h1>Album</h1>
