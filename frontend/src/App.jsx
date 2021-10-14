@@ -2,6 +2,8 @@ import React, { createContext, useState } from 'react'
 import './App.css'
 import './Navigation.css'
 import './Login.css'
+import './SwitchStyle.css'
+import './Popup.css'
 
 import {
     BrowserRouter as Router,
@@ -17,6 +19,7 @@ import Navigation from './components/Navigation'
 import Player from './components/Player'
 import Login from './pages/Login'
 import ArtistPage from "./pages/ArtistPage";
+
 
 function App() {
 
