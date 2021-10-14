@@ -1,5 +1,4 @@
-import React, {createContext, useState} from 'react'
-
+import React, { createContext, useState } from 'react'
 import './App.css'
 import './Navigation.css'
 import './Login.css'
@@ -14,7 +13,6 @@ import {
 import RegisterPage from './pages/RegisterPage'
 import HomePage from './pages/HomePage'
 import PlaylistPage from './pages/PlaylistPage'
-
 import Navigation from './components/Navigation'
 import Player from './components/Player'
 import Login from './pages/Login'
@@ -30,14 +28,14 @@ function App() {
                 <Route path="/PlaylistPage" exact component={PlaylistPage} />
                 <Route path="/Login" exact component={Login} />
                 <Route path="/Register" exact component={RegisterPage} />
-                <Route path="/artist/:id" component={ArtistPage}/>
+                <Route path="/artist/:id" component={ArtistPage} />
             </Router>
             <main>
             </main>
             {/* update current song whenever the videoId changes */}
             <Player />
 
-      </div>
+        </div>
     )
 
 }
