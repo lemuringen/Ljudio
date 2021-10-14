@@ -4,7 +4,7 @@ import { SearchContext } from "../contexts/SearchContext";
 import SearchList from "../components/SearchList";
 import SongList from "../components/SongList";
 import ArtistList from "../components/ArtistList";
-import Popup from '../components/Popup'
+
 
 function HomePage() {
     const [input, setInput] = useState('')
@@ -106,16 +106,6 @@ function HomePage() {
 
 
                 </div>
-                <Popup trigger={false}>
-                    <ul className='nav-menu-items'>
-                        <li className='popup-text'>
-                            <a href="#">Add to playlist</a>
-                        </li>
-                        <li className='popup-text'>
-                            <a href="#">Artist Page</a>
-                        </li>
-                    </ul>
-                </Popup>
             </div>
         </div>
     )

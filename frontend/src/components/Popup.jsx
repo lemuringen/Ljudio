@@ -7,7 +7,7 @@ function Popup(props) {
         <div className="popup">
             <div className="popup-inner">
                 <IconContext.Provider value={{ color: '#fff' }} />
-                <div className="close-btn"><AiIcons.AiOutlineClose /></div>
+                <div className="close-btn" onClick={() => props.setTrigger(false)}><AiIcons.AiOutlineClose /></div>
                 {props.children}
             </div>
         </div>
