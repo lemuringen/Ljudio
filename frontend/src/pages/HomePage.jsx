@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { PlayerContext } from '../contexts/PlayerContext'
 import { BsThreeDotsVertical } from 'react-icons/bs'
+import SearchList from '../components/SearchList'
 
 
 function HomePage() {
@@ -38,7 +39,7 @@ function HomePage() {
                     <input
                         className="input-bar"
                         type="text"
-                        placeholder="Search songs"
+                        placeholder=" Search.. "
                         onChange={searchSong}
                     />
                 </div>
@@ -70,33 +71,7 @@ function HomePage() {
                 </div>
 
                 <div>
-                    {songs && songs.map(song => (
-                        <div className="search-list-item" onClick={() => songClick(song)} key={song.videoId}>
-                            <div className="search-list-item-img-container"><img src={song.thumbnails[0].url} /></div>
-                            <div className="search-list-item-text-container">
-                                <span className="search-list-item-song-row"> Song: {song.name}</span>
-                                <span className="search-list-item-artist-row"> Artist: {song.artist.name}</span>
-                            </div>
-                            <div className="kebab-menu-container">
-                                <BsThreeDotsVertical />
-                            </div>
-
-                        </div>
-                    ))}
-                    {/* *** Artist search ***
-                    {songs && songs.map(song => (
-                        <div className="search-list-item" onClick={() => songClick(song)} key={song.browseId}>
-                            <div className="search-list-item-img-container"><img src={song.thumbnails[0].url} /></div>
-                            <div className="search-list-item-text-container">
-                                <span className="search-list-item-artist-row"> Artist: {song.name}</span>
-                            </div>
-                            <div className="kebab-menu-container">
-                                <BsThreeDotsVertical />
-                            </div>
-
-                        </div>
-                    ))}
-                    */}
+                    {songs && songs !== undefined ? <SearchList props={songs} type={searchFilter} /> : ""}
                 </div>
             </div>
         </div>
