@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { PlayerContext } from '../contexts/PlayerContext'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import SearchList from '../components/SearchList'
+import Popup from '../components/Popup'
 
 
 function HomePage() {
@@ -73,6 +74,9 @@ function HomePage() {
                 <div>
                     {songs && songs !== undefined ? <SearchList props={songs} type={searchFilter} /> : ""}
                 </div>
+                <Popup trigger={false}>
+                    <h3>hello world</h3>
+                </Popup>
             </div>
         </div>
     )
