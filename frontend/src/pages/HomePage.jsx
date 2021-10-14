@@ -5,7 +5,7 @@ import {BsThreeDotsVertical} from 'react-icons/bs'
 import SearchList from "../components/SearchList";
 import SongList from "../components/SongList";
 import ArtistList from "../components/ArtistList";
-
+import Popup from '../components/Popup'
 
 function HomePage() {
     const [input, setInput] = useState('')
@@ -16,7 +16,7 @@ function HomePage() {
     const [searchContext, updateSearchContext] = useContext(SearchContext)
     const [searchWord, setSearchWord] = useState("")
 
-    async function searchSong(searchWord) {
+    async function search (searchWord) {
         let response = await fetch('https://yt-music-api.herokuapp.com/api/yt/' + searchFilter + '/' + searchWord)
         let result = await response.json()
         setSongs(result.content)
@@ -25,11 +25,24 @@ function HomePage() {
     function updateSearchWord(e) {
         setSearchWord(e.target.value)
     }
+    async function fetchAlbum(e) {
+        if((e.target.value).length === 0) return
+        let response = await fetch('https://yt-music-api.herokuapp.com/api/yt/album/browseId' + e.target.value)
+        let result = await response.json()
+        console.log(result.content)
+        setSongs(result.content)
+    }
+    function songClick(song) {
+        updateContext({
+            queue: songs,
+            currentSong: song
+        })
+    }
 
 
     useEffect(() => {
         if (searchWord === "") return
-        searchSong(searchWord)
+        search (searchWord)
     }, [searchFilter, searchWord])
 
     useEffect(() => {
@@ -94,6 +107,16 @@ function HomePage() {
 
 
                 </div>
+                <Popup trigger={false}>
+                    <ul className='nav-menu-items'>
+                        <li className='popup-text'>
+                            <a href="#">Add to playlist</a>
+                        </li>
+                        <li className='popup-text'>
+                            <a href="#">Artist Page</a>
+                        </li>
+                    </ul>
+                </Popup>
             </div>
         </div>
     )

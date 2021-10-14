@@ -10,11 +10,6 @@ function PlayerContextProvider(props) {
         currentSong: null
     })
 
-    /*
-      values = {
-        currentSong: { videoId: '23546erge3' }
-      }
-    */
     // use spread to keep old data and only
     // replace the once who match
     function updateContext(values) {

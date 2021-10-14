@@ -39,7 +39,7 @@ header {
 #footer {
   background-color: #181818;
   color: #fff;
-  height: 100px;
+  height: min-content;
   display:grid;
   grid-template-columns: 1fr;
   position: fixed;
@@ -54,15 +54,12 @@ header {
   text-align: center;
 }
 .pre-btn{
-  grid-column-start: 3;
-  grid-column-end: 3;
   transform: rotate(180deg);
 }
 .play-pause-btn-container{
   grid-column-start: 2;
   grid-column-end: 2;
 }
-
 .pre-btn-container{
   grid-column-start: 1;
   grid-column-end: 1;
@@ -89,6 +86,30 @@ header {
   margin-left: auto;
   margin-right: auto;
 }
+/*
+ Album Page
+*/
+.artist-page-container{
+  display: flex;
+  flex-direction: column;
+}
+.artist-details-inner-container{
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+  justify-content: space-between;
+}
+.social-media-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+.social-media-row{
+  align-items: end;
+  display: flex;
+  flex-display: row;
+}
+.artist-image{}
 /*
 Home page
  */

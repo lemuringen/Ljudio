@@ -8,6 +8,7 @@ import SearchContextProvider from "./contexts/SearchContext";
 ReactDOM.render(
     <React.StrictMode>
         <PlayerContextProvider>
+
                 <SearchContextProvider>
                 <App/>
                 </SearchContextProvider>
