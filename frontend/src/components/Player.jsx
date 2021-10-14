@@ -67,7 +67,8 @@ function Player() {
     const [currentlyPlayingField, setCurrentlyPlayingField] = useState("");
     useEffect(() => {
         if (!context.currentSong) return
-        setCurrentlyPlayingField(context.currentSong.artist.name + " - " + context.currentSong.name)
+let currentlyPlayingString = (context.currentSong.artist ? context.currentSong.artist.name + " - " : "") + context.currentSong.name
+        setCurrentlyPlayingField(currentlyPlayingString)
     }, [context.currentSong])
 
     /*>>>Buttons>>>*/
