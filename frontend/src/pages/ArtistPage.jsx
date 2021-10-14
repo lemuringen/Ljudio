@@ -34,13 +34,9 @@ function ArtistPage() {
             if (!artist || artist === undefined) return
             searchAlbums()
             setArtistImageSrc(artist.thumbnails[0].url)
-            setArtisDescription(artist.description)
+            setArtisDescription(artist.description === "" ? "No description available" : artist.description)
 
         }, [artist, artistImageSrc])
-
-    function albumClick() {
-
-    }
 
     async function searchAlbums() {
         let response = await fetch('https://yt-music-api.herokuapp.com/api/yt/albums/' + artist.name)
@@ -92,7 +88,7 @@ function ArtistPage() {
                 <div className={"album-grid"}>
                     {albums && albums.map(album => (
                         <div className="album-container" key={album.browseId} onClick={() => fetchAlbum(album)}>
-                            <img src={album.thumbnails[0].url} />
+                            <img src={album.thumbnails[2].url} />
                             <span>
                                 <p>{album.name}</p>
                                 <p>Realeased: {album.year}</p>
@@ -101,7 +97,6 @@ function ArtistPage() {
                     ))
                     }
                 </div>
-
             </section>
         </div>
     );

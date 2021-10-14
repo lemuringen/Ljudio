@@ -4,12 +4,16 @@ import {SearchContext} from "../contexts/SearchContext";
 import {BsThreeDotsVertical} from 'react-icons/bs'
 import SearchList from "../components/SearchList";
 import Popup from '../components/Popup'
+import {Link} from "react-router-dom";
 
 function SongList() {
     const [playerContext, updatePlayerContext] = useContext(PlayerContext)
     const [searchContext, updateSearchContext] = useContext(SearchContext)
     const [songs, setSongs] = useState();
     const [doRender, setDoRender] = useState(false)
+    const [artistId, setArtistId] = useState("")
+    const [buttonPopup, setButtonPopup] = useState(false)
+
     useEffect(() => {
         if (searchContext.list.length === 0 || searchContext.type !== "songs") {
             setDoRender(false)
@@ -20,12 +24,18 @@ function SongList() {
     }, [searchContext])
 
     function songClick(song) {
+        if(buttonPopup) return
         updatePlayerContext({
-            currentSong: song
+            currentSong: song,
+            queue: songs
         })
     }
 
-    const [buttonPopup, setButtonPopup] = useState(false)
+    function openKebabContextMenu(id) {
+        setArtistId("/artist/" + id)
+        setButtonPopup(true)
+    }
+
 
     return (
         <div>
@@ -36,8 +46,8 @@ function SongList() {
                         <span className="search-list-item-song-row"> Song: {song.name}</span>
                         <span className="search-list-item-artist-row"> Artist: {song.artist.name}</span>
                     </div>
-                    <div className="kebab-menu-container" onClick={() => setButtonPopup(true)}>
-                        <BsThreeDotsVertical />
+                    <div className="kebab-menu-container" onClick={() => openKebabContextMenu(song.artist.browseId)}>
+                        <BsThreeDotsVertical/>
                     </div>
                     <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
                         <ul className='nav-menu-items'>
@@ -45,7 +55,7 @@ function SongList() {
                                 <a href="#">Add to playlist</a>
                             </li>
                             <li className='popup-text'>
-                                <a href="#">Artist Page</a>
+                                <Link to={artistId}>Artist Page</Link>
                             </li>
                         </ul>
                     </Popup>
