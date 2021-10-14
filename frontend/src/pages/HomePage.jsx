@@ -84,7 +84,7 @@ function HomePage() {
                             checked={searchFilter === "songs"}
                             onChange={setSearchSongs}
                         />
-                        <label for="songs" className="switch-label switch-label-off">Songs</label>
+                        <label htmlFor="songs" className="switch-label switch-label-off">Songs</label>
 
                         <input type="radio"
                             className="switch-input"
@@ -94,7 +94,7 @@ function HomePage() {
                             checked={searchFilter === "artists"}
                             onChange={setSearchArtists}
                         />
-                        <label for="artists" className="switch-label switch-label-on">Artists</label>
+                        <label htmlFor="artists" className="switch-label switch-label-on">Artists</label>
 
                         <span className="switch-selection"></span>
                     </div>

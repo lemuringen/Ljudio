@@ -24,7 +24,7 @@ function ArtistList() {
         <div>
             {doRender && artists.map(artist => (
                 <div className="search-list-item" key={artist.browseId}>
-                    <div className="search-list-item-img-container"><img src={artist.thumbnails[1].url} /></div>
+                    <div className="search-list-item-img-container"><img src={artist.thumbnails[0].url} /></div>
                     <div className="search-list-item-text-container">
                         <span className="search-list-item-artist-row"> Artist: {artist.name}</span>
                     </div>
