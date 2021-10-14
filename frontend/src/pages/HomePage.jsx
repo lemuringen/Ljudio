@@ -24,15 +24,6 @@ function HomePage() {
         setSearchWord(e.target.value)
     }
 
-
-    async function fetchAlbum(e) {
-        if ((e.target.value).length === 0) return
-        let response = await fetch('https://yt-music-api.herokuapp.com/api/yt/album/browseId' + e.target.value)
-        let result = await response.json()
-        console.log(result.content)
-        setSearchResults(result.content)
-    }
-
 /*
     Calls search function whenever a new searchfilter or searchfield input is given
  */
