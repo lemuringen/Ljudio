@@ -3,6 +3,7 @@ import {PlayerContext} from '../contexts/PlayerContext'
 import {SearchContext} from "../contexts/SearchContext";
 import {BsThreeDotsVertical} from 'react-icons/bs'
 import SearchList from "../components/SearchList";
+import Popup from '../components/Popup'
 
 function SongList() {
     const [playerContext, updatePlayerContext] = useContext(PlayerContext)
@@ -24,6 +25,8 @@ function SongList() {
         })
     }
 
+    const [buttonPopup, setButtonPopup] = useState(false)
+
     return (
         <div>
             {doRender && songs.map(song => (
@@ -33,9 +36,20 @@ function SongList() {
                         <span className="search-list-item-song-row"> Song: {song.name}</span>
                         <span className="search-list-item-artist-row"> Artist: {song.artist.name}</span>
                     </div>
-                    <div className="kebab-menu-container">
-                        <BsThreeDotsVertical/>
+                    <div className="kebab-menu-container" onClick={() => setButtonPopup(true)}>
+                        <BsThreeDotsVertical />
                     </div>
+                    <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+                        <ul className='nav-menu-items'>
+                            <li className='popup-text'>
+                                <a href="#">Add to playlist</a>
+                            </li>
+                            <li className='popup-text'>
+                                <a href="#">Artist Page</a>
+                            </li>
+                        </ul>
+                    </Popup>
+
                 </div>
             ))}
 
