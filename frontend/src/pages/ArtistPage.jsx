@@ -1,6 +1,27 @@
 import React, {useEffect, useState} from 'react'
-import {FaFacebook, FaInstagram, FaTwitter} from 'react-icons/fa';
+import {FaFacebook, FaTwitter, FaInstagram} from 'react-icons/fa';
 import {useParams} from "react-router-dom";
+import {
+    EmailShareButton,
+    FacebookShareButton,
+    HatenaShareButton,
+    InstapaperShareButton,
+    LineShareButton,
+    LinkedinShareButton,
+    LivejournalShareButton,
+    MailruShareButton,
+    OKShareButton,
+    PinterestShareButton,
+    PocketShareButton,
+    RedditShareButton,
+    TelegramShareButton,
+    TumblrShareButton,
+    TwitterShareButton,
+    ViberShareButton,
+    VKShareButton,
+    WhatsappShareButton,
+    WorkplaceShareButton
+} from "react-share";
 
 function ArtistPage() {
     let {id} = useParams();
@@ -49,7 +70,7 @@ function ArtistPage() {
                     <img src={artistImageSrc}/>
                 </div>
                 <div>{artistDescription}</div>
-
+       FacebookShareButton
             </section>
             <section className="albums">
                 <h1>Album</h1>
