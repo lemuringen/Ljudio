@@ -70,7 +70,6 @@ function HomePage() {
                 </div>
 
                 <div>
-
                     {songs && songs.map(song => (
                         <div className="search-list-item" onClick={() => songClick(song)} key={song.videoId}>
                             <div className="search-list-item-img-container"><img src={song.thumbnails[0].url} /></div>
