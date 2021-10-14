@@ -74,8 +74,15 @@ function HomePage() {
                 <div>
                     {songs && songs !== undefined ? <SearchList props={songs} type={searchFilter} /> : ""}
                 </div>
-                <Popup trigger={false}>
-                    <h3>hello world</h3>
+                <Popup trigger={true}>
+                    <ul className='nav-menu-items'>
+                        <li className='popup-text'>
+                            <a href="#">Add to playlist</a>
+                        </li>
+                        <li className='popup-text'>
+                            <a href="#">Artist Page</a>
+                        </li>
+                    </ul>
                 </Popup>
             </div>
         </div>

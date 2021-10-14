@@ -4,6 +4,7 @@ import './App.css'
 import './Navigation.css'
 import './Login.css'
 import './SwitchStyle.css'
+import './Popup.css'
 
 import {
     BrowserRouter as Router,
