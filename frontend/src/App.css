@@ -87,6 +87,30 @@ header {
   margin-right: auto;
 }
 /*
+ Album Page
+*/
+.artist-page-container{
+  display: flex;
+  flex-direction: column;
+}
+.artist-details-inner-container{
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+  justify-content: space-between;
+}
+.social-media-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+.social-media-row{
+  align-items: end;
+  display: flex;
+  flex-display: row;
+}
+.artist-image{}
+/*
 Home page
  */
 .search-list-item-text-container{

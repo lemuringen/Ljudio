@@ -127,7 +127,6 @@ function Player() {
         let willPlay = isPlaying ? false : true
         if (willPlay) {
             player.playVideo();
-
         } else if (!willPlay) {
             player.pauseVideo();
         }
