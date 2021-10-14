@@ -1,13 +1,21 @@
-import React, { useEffect, useState } from 'react'
-import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
-import { useParams } from "react-router-dom";
+import React, {useContext, useEffect, useState} from 'react'
+import {FaFacebook, FaTwitter, FaReddit} from 'react-icons/fa';
+import {useParams} from "react-router-dom";
 
+import {
+    FacebookShareButton,
+    TwitterShareButton,
+    RedditShareButton
+
+} from "react-share";
+import {PlayerContext} from "../contexts/PlayerContext"; // https://github.com/nygardk/react-share/
 function ArtistPage() {
     let { id } = useParams();
     const [albums, setAlbums] = useState()
     const [artist, setArtist] = useState()
     const [artistImageSrc, setArtistImageSrc] = useState("")
     const [artistDescription, setArtisDescription] = useState("")
+    const [playerContext, updatePlayerContext] = useContext(PlayerContext)
 
     useEffect
         (() => {
@@ -30,14 +38,25 @@ function ArtistPage() {
 
         }, [artist, artistImageSrc])
 
+    function albumClick() {
+
+    }
 
     async function searchAlbums() {
         let response = await fetch('https://yt-music-api.herokuapp.com/api/yt/albums/' + artist.name)
         let result = await response.json()
         setAlbums(result.content)
-        console.log(albums)
     }
 
+    async function fetchAlbum(album) {
+        let response = await fetch('https://yt-music-api.herokuapp.com/api/yt/album/' + album.browseId)
+        let result = await response.json()
+        updatePlayerContext({
+            queue: result.tracks,
+                currentSong: result.tracks[0]
+            }
+        )
+    }
 
     return (
         <div className="artist-page-container home-holder">
@@ -48,21 +67,35 @@ function ArtistPage() {
                 <div className="artist-image">
                     <img src={artistImageSrc} />
                 </div>
+
                 <div className="artist-description">{artistDescription}</div>
+                <FacebookShareButton
+                    url={window.location.href}
+                    hashtag="#wanderlust">
+                    <FaFacebook/>
+                </FacebookShareButton>
+                <TwitterShareButton
+                    url={window.location.href}
+                    hashtag="#kämpaPå">
+                    <FaTwitter/>
+                </TwitterShareButton>
+                <RedditShareButton
+                    url={window.location.href}
+                    hashtag="#carpeDiem">
+                    <FaReddit/>
+                </RedditShareButton>
 
             </section>
             <section className="albums">
                 <h1>Album</h1>
                 <div className={"album-grid"}>
                     {albums && albums.map(album => (
-                        <div className="album-container" key={album.browseId}>
-
-                            <img src={album.thumbnails[0].url} />
+                        <div className="album-container" key={album.browseId} onClick={() => fetchAlbum(album)}>
+                            <img src={album.thumbnails[0].url}/>
                             <span>
                                 <p>{album.name}</p>
                                 <p>Realeased: {album.year}</p>
-
-                            </span>
+                    </span>
                         </div>
                     ))
                     }
