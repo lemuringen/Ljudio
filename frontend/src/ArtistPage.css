@@ -33,7 +33,7 @@
 }
 .album-grid{
     display:grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     align-content: center;
     margin-left: auto;
     margin-right: auto;
@@ -59,25 +59,4 @@
         margin-right: auto;
         
     }
-    /*
-    .nav-holder {
-      background-color: #181818;
-      min-width: 600px;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-    } 
-    .home-holder {
-      min-width: 600px;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-    } 
-    .player-nav {
-      min-width: 600px;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-    } 
-    */
-  }
+}
