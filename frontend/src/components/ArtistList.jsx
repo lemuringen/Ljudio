@@ -30,7 +30,7 @@ function ArtistList() {
     }
 
     return (
-        < div className="box-box">
+        < div>
             {doRender && artists.map(artist => (
                 <div className="search-list-item" key={artist.browseId}>
                     <div className="search-list-item-img-container"><img src={artist.thumbnails[0].url} /></div>

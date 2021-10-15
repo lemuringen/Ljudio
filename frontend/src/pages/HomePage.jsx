@@ -1,5 +1,5 @@
-import React, {useContext, useEffect, useState} from 'react'
-import {SearchContext} from "../contexts/SearchContext";
+import React, { useContext, useEffect, useState } from 'react'
+import { SearchContext } from "../contexts/SearchContext";
 import SongList from "../components/SongList";
 import ArtistList from "../components/ArtistList";
 
@@ -24,18 +24,18 @@ function HomePage() {
         setSearchWord(e.target.value)
     }
 
-/*
-    Calls search function whenever a new searchfilter or searchfield input is given
- */
+    /*
+        Calls search function whenever a new searchfilter or searchfield input is given
+     */
     useEffect(() => {
         if (searchWord === "") return
         search(searchWord)
     }, [searchFilter, searchWord])
-/*
-    Updates SearchContext whenever new songs are loaded in the songs-useState.
-    This should be triggered by search function.
-    When this is triggered a UseEffect in SongList will be triggered and show searchresults
- */
+    /*
+        Updates SearchContext whenever new songs are loaded in the songs-useState.
+        This should be triggered by search function.
+        When this is triggered a UseEffect in SongList will be triggered and show searchresults
+     */
     useEffect(() => {
         if (!searchResults) return
         updateSearchContext({
@@ -68,30 +68,30 @@ function HomePage() {
                 <div className="container">
                     <div className="switch">
                         <input type="radio"
-                               className="switch-input"
-                               name="view"
-                               value="songs"
-                               id="songs"
-                               checked={searchFilter === "songs"}
-                               onChange={setSearchSongs}
+                            className="switch-input"
+                            name="view"
+                            value="songs"
+                            id="songs"
+                            checked={searchFilter === "songs"}
+                            onChange={setSearchSongs}
                         />
                         <label htmlFor="songs" className="switch-label switch-label-off">Songs</label>
                         <input type="radio"
-                               className="switch-input"
-                               name="view"
-                               value="artists"
-                               id="artists"
-                               checked={searchFilter === "artists"}
-                               onChange={setSearchArtists}
+                            className="switch-input"
+                            name="view"
+                            value="artists"
+                            id="artists"
+                            checked={searchFilter === "artists"}
+                            onChange={setSearchArtists}
                         />
                         <label htmlFor="artists" className="switch-label switch-label-on">Artists</label>
                         <span className="switch-selection"></span>
                     </div>
                 </div>
-                <div>
+                <div className="box-box">
 
-                    <SongList/>
-                    <ArtistList/>
+                    <SongList />
+                    <ArtistList />
 
 
                 </div>
