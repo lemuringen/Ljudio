@@ -47,6 +47,7 @@ function ArtistPage() {
     async function fetchAlbum(album) {
         let response = await fetch('https://yt-music-api.herokuapp.com/api/yt/album/' + album.browseId)
         let result = await response.json()
+
         updatePlayerContext({
             queue: result.tracks,
             currentSong: result.tracks[0]

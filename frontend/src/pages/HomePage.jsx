@@ -14,8 +14,12 @@ function HomePage() {
     Search for input given by user with search filter applied
      */
     async function search(searchWord) {
-        if (searchWord === "big") return
-        let response = await fetch('https://yt-music-api.herokuapp.com/api/yt/' + searchFilter + '/' + searchWord)
+        let response;
+        if (searchWord === "big") {
+             response = await fetch('https://yt-music-api.herokuapp.com/api/yt/' + searchFilter + '/' + searchWord + 'g')
+        }else{
+             response = await fetch('https://yt-music-api.herokuapp.com/api/yt/' + searchFilter + '/' + searchWord)
+        }
         let result = await response.json()
         setSearchResults(result.content)
     }
@@ -23,7 +27,6 @@ function HomePage() {
     function updateSearchWord(e) {
         setSearchWord(e.target.value)
     }
-
     /*
         Calls search function whenever a new searchfilter or searchfield input is given
      */

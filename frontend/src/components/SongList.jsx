@@ -7,12 +7,16 @@ import Popup from '../components/Popup'
 import { Link } from "react-router-dom";
 
 function SongList() {
+    let x = 1;
+    x++
+    console.log(x)
     const [playerContext, updatePlayerContext] = useContext(PlayerContext)
     const [searchContext, updateSearchContext] = useContext(SearchContext)
     const [songs, setSongs] = useState();
     const [doRender, setDoRender] = useState(false)
     const [artistId, setArtistId] = useState("")
     const [buttonPopup, setButtonPopup] = useState(false)
+    const  [active, setActive] = useState("")
 
     useEffect(() => {
         if (searchContext.list.length === 0 || searchContext.type !== "songs") {
@@ -35,7 +39,6 @@ function SongList() {
         setArtistId("/artist/" + id)
         setButtonPopup(true)
     }
-
 
     return (
         <div>
@@ -62,8 +65,6 @@ function SongList() {
 
                 </div>
             ))}
-
-
         </div>)
 }
 
