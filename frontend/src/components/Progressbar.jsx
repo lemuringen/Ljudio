@@ -1,5 +1,5 @@
-import React, {useState, useContext, useEffect} from 'react'
-import {PlayerContext} from '../contexts/PlayerContext'
+import React, { useState, useContext, useEffect } from 'react'
+import { PlayerContext } from '../contexts/PlayerContext'
 
 function Progressbar() {
     const [context, updateContext] = useContext(PlayerContext)
@@ -88,7 +88,7 @@ function Progressbar() {
                     onChange={changeSongPosition}
                     onMouseUp={mouseUp}
                     type="range"
-                    style={{width: '100%'}}
+                    style={{ width: '90%' }}
                 />
 
             </div>

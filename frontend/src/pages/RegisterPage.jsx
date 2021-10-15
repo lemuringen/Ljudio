@@ -28,7 +28,7 @@ function RegisterPage() {
     }
 
     return (
-        <div>
+        <div className="home-holder">
             <input id="firstName" name="firstName" className="input-bar" type="text" placeholder="First name" />
             <br />
             <input id="lastName" name="lastName" className="input-bar" type="text" placeholder="Last name" />

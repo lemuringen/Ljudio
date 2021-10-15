@@ -36,14 +36,13 @@ function Login() {
     }
 
     return (
-        <div>
+        <div className="home-holder">
             <input id="user" name="user" className="input-bar" type="text" placeholder="Username" />
             <br />
             <input id="password" name="password" className="input-bar" type="text" placeholder="Password" />
             <br />
             <a href="#" className="register-link">Register here</a>
             <a href="#" onClick={customLogin} className="confirm-btn">Login</a>
-            <a href="#" onClick={whoAmI} className="confirm-btn">Är jag inloggad?</a>
         </div >
     )
 }
