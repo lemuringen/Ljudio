@@ -1,10 +1,10 @@
-import React, {useContext, useState, useEffect} from 'react'
-import {PlayerContext} from '../contexts/PlayerContext'
-import {SearchContext} from "../contexts/SearchContext";
-import {BsThreeDotsVertical} from 'react-icons/bs'
+import React, { useContext, useState, useEffect } from 'react'
+import { PlayerContext } from '../contexts/PlayerContext'
+import { SearchContext } from "../contexts/SearchContext";
+import { BsThreeDotsVertical } from 'react-icons/bs'
 import SearchList from "../components/SearchList";
 import Popup from '../components/Popup'
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function SongList() {
     const [playerContext, updatePlayerContext] = useContext(PlayerContext)
@@ -24,7 +24,7 @@ function SongList() {
     }, [searchContext])
 
     function songClick(song) {
-        if(buttonPopup) return
+        if (buttonPopup) return
         updatePlayerContext({
             currentSong: song,
             queue: songs
@@ -38,16 +38,16 @@ function SongList() {
 
 
     return (
-        <div>
+        <div className="box-box">
             {doRender && songs.map(song => (
                 <div className="search-list-item" onClick={() => songClick(song)} key={song.videoId}>
-                    <div className="search-list-item-img-container"><img src={song.thumbnails[0].url}/></div>
+                    <div className="search-list-item-img-container"><img src={song.thumbnails[0].url} /></div>
                     <div className="search-list-item-text-container">
                         <span className="search-list-item-song-row"> Song: {song.name}</span>
                         <span className="search-list-item-artist-row"> Artist: {song.artist.name}</span>
                     </div>
                     <div className="kebab-menu-container" onClick={() => openKebabContextMenu(song.artist.browseId)}>
-                        <BsThreeDotsVertical/>
+                        <BsThreeDotsVertical />
                     </div>
                     <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
                         <ul className='nav-menu-items'>

@@ -14,9 +14,9 @@ function Navigation() {
         <header>
             <div className="nav-holder">
                 <div>
-                    <a href="/"><Link to="/">
-                        <img className="logo" src="../src/img/logga_ljudio.png" alt="Ljudio logo" /></Link>
-                    </a>
+                    <Link to="/">
+                        <img className="logo" src="../src/img/logga_ljudio.png" alt="Ljudio logo" />
+                    </Link>
                 </div>
                 <div className="navbar">
                     <IconContext.Provider value={{ color: '#fff' }} />

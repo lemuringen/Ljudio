@@ -170,6 +170,9 @@ Home page
   margin-left: auto;
   margin-right: auto;
 }
+.box-box{
+  padding-bottom: 0px;
+}
 /*
 These rules will apply on screens that are 500px wide or larger.
 */
