@@ -14,8 +14,8 @@ function Navigation() {
         <header>
             <div className="nav-holder">
                 <div>
-                    <a href="/">
-                        <img className="logo" src="../src/img/logga_ljudio.png" alt="Ljudio logo" />
+                    <a href="/"><Link to="/">
+                        <img className="logo" src="../src/img/logga_ljudio.png" alt="Ljudio logo" /></Link>
                     </a>
                 </div>
                 <div className="navbar">
