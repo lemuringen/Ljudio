@@ -6,6 +6,10 @@
     display:grid;
     align-content: center;
     padding: 15px;
+    height: auto;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 .artist-description{
     background-color: #181818;
