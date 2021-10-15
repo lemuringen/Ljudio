@@ -25,6 +25,7 @@
     color: #fff;
     margin-left: auto;
     margin-right: auto;
+    padding-bottom: 150px;
 }
 .album-grid{
     display:grid;
