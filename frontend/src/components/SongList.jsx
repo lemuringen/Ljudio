@@ -7,9 +7,6 @@ import Popup from '../components/Popup'
 import { Link } from "react-router-dom";
 
 function SongList() {
-    let x = 1;
-    x++
-    console.log(x)
     const [playerContext, updatePlayerContext] = useContext(PlayerContext)
     const [searchContext, updateSearchContext] = useContext(SearchContext)
     const [songs, setSongs] = useState();
