@@ -50,11 +50,7 @@ public class MyUserDetailsService implements UserDetailsService {
     }
 
     public UserDTO addUser(UserDTO userDTO) {
-        UserDTO encodedUserDTO = new UserDTO();
-        encodedUserDTO.setEmail(userDTO.getEmail());
-        encodedUserDTO.setPassword(encoder.encode(userDTO.getPassword()));
-        encodedUserDTO.setFirstName(userDTO.getFirstName());
-        encodedUserDTO.setLastName(userDTO.getLastName());
+        userDTO.setPassword(encoder.encode(userDTO.getPassword()));
         try {
             return userDAO.save(userDTO);
         } catch (Exception ex) {

@@ -40,7 +40,7 @@ function Progressbar() {
 
     function formatTimeFromSeconds(time, maxTime) {
         let maxTimeAboveHour = 1 < (maxTime / 3600);
-        let maxTimeAboveMinute = 1 < (maxTime / 60);
+        // let maxTimeAboveMinute = 1 < (maxTime / 60);
         let h = time / (3600);
         time = time % (3600);
         let m = time / 60;
@@ -50,7 +50,7 @@ function Progressbar() {
         h = (h > 0 || maxTimeAboveHour ? (h < 10 ? "0" + h : h) + ":" : "")
         m = parseInt(m);
         //  m = (m > 0 || maxTimeAboveMinute ? (m < 10 ? "0" + m : m) + ":" : "")
-        m = (m < 10 ? "0" + m : m) + ":"
+        m = (m < 10 ? "0" + m : m) + ":" // remove this if you wanna use the commented rows
         s = parseInt(s)
         s = s < 10 ? "0" + s : s;
         return "" + h + m + s;

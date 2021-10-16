@@ -1,6 +1,18 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 function RegisterPage() {
+    const [user, setUser] = useState({
+        email: '',
+        password: '',
+        firstName: '',
+        lastName: ''
+    });
+    function updateUser(e){
+        setUser({
+            ...user,
+            ...e.target.value()
+        })
+    }
     async function register() {
         const credentials = {
             email: 'user1',
@@ -11,7 +23,7 @@ function RegisterPage() {
 
         let response = await fetch("api/login/register", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: {"Content-Type": "application/json"},
             body: JSON.stringify(credentials)
         });
         try {
@@ -29,14 +41,15 @@ function RegisterPage() {
 
     return (
         <div className="home-holder">
-            <input id="firstName" name="firstName" className="input-bar" type="text" placeholder="First name" />
-            <br />
-            <input id="lastName" name="lastName" className="input-bar" type="text" placeholder="Last name" />
-            <br />
-            <input id="mail" name="mail" className="input-bar" type="text" placeholder="E-mail" />
-            <br />
-            <input id="password" name="password" className="input-bar" type="text" placeholder="Password" />
-            <br />
+            <input onChange="" id="firstName" name="firstName" className="input-bar" type="text"
+                   placeholder="First name"/>
+            <br/>
+            <input id="lastName" name="lastName" className="input-bar" type="text" placeholder="Last name"/>
+            <br/>
+            <input id="mail" name="mail" className="input-bar" type="text" placeholder="E-mail"/>
+            <br/>
+            <input id="password" name="password" className="input-bar" type="text" placeholder="Password"/>
+            <br/>
             <a href="#" onClick={register} className="confirm-btn">Register</a>
         </div>
     )

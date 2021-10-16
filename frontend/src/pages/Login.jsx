@@ -24,14 +24,13 @@ function Login() {
     }
     async function whoAmI() {
         let loggedInUser = null
-
         let response = await fetch('/api/login/whoami')
+
         try {
             loggedInUser = await response.json()
         } catch {
             console.log('Not logged in');
         }
-
         console.log(loggedInUser);
     }
 
@@ -41,7 +40,7 @@ function Login() {
             <br />
             <input id="password" name="password" className="input-bar" type="text" placeholder="Password" />
             <br />
-            <a href="#" className="register-link">Register here</a>
+            <a href="#" className="register-link" onClick={whoAmI}>Register here</a>
             <a href="#" onClick={customLogin} className="confirm-btn">Login</a>
         </div >
     )
