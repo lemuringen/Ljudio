@@ -3,16 +3,13 @@ import { PlayerContext } from '../contexts/PlayerContext'
 import { SearchContext } from "../contexts/SearchContext";
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import { Link } from 'react-router-dom';
-import SearchList from "../components/SearchList";
 import Popup from '../components/Popup'
 
 function ArtistList() {
-
-    const [playerContext, updatePlayerContext] = useContext(PlayerContext)
     const [searchContext, updateSearchContext] = useContext(SearchContext)
     const [artists, setArtists] = useState();
     const [doRender, setDoRender] = useState(false)
-    const [artistId, setArtistId] = useState("")
+    const [artistPageReferal, setArtistPageReferal] = useState("")
     const [buttonPopup, setButtonPopup] = useState(false)
 
     useEffect(() => {
@@ -25,7 +22,7 @@ function ArtistList() {
     }, [searchContext])
 
     function openKebabContextMenu(id) {
-        setArtistId("/artist/" + id)
+        setArtistPageReferal("/artist/" + id)
         setButtonPopup(true)
     }
 
@@ -44,7 +41,7 @@ function ArtistList() {
                     <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
                         <ul className='nav-menu-items'>
                             <li className='popup-text'>
-                                <Link to={artistId}>Artist Page</Link>
+                                <Link to={artistPageReferal}>Artist Page</Link>
                             </li>
                         </ul>
                     </Popup>

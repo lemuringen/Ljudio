@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
-import { Link } from 'react-router-dom';
-import { SidebarData } from './SidebarData';
-import { IconContext } from 'react-icons/lib';
+import {Link} from 'react-router-dom';
+import {SidebarData} from './SidebarData';
+import {IconContext} from 'react-icons/lib';
 
 function Navigation() {
     const [sidebar, setSidebar] = useState(false)
@@ -15,13 +15,13 @@ function Navigation() {
             <div className="nav-holder">
                 <div>
                     <Link to="/">
-                        <img className="logo" src="../src/img/logga_ljudio.png" alt="Ljudio logo" />
+                        <img className="logo" src="../src/img/logga_ljudio.png" alt="Ljudio logo"/>
                     </Link>
                 </div>
                 <div className="navbar">
-                    <IconContext.Provider value={{ color: '#fff' }} />
+                    <IconContext.Provider value={{color: '#fff'}}/>
                     <Link to="#" className='menu-bars'>
-                        <FaIcons.FaBars onClick={showSidebar} />
+                        <FaIcons.FaBars onClick={showSidebar}/>
                     </Link>
                 </div>
             </div>
@@ -29,7 +29,7 @@ function Navigation() {
                 <ul className='nav-menu-items' onClick={showSidebar}>
                     <li className="navbar-toggle">
                         <Link to="#" className='menu-bars'>
-                            <AiIcons.AiOutlineClose />
+                            <AiIcons.AiOutlineClose/>
                         </Link>
                     </li>
                     {SidebarData.map((item, index) => {
@@ -41,9 +41,16 @@ function Navigation() {
                             </li>
                         )
                     })}
+                    <li key="logout" className="nav-text" id="logout" onClick={() => {
+                        fetch('/logout')
+                    }}>
+                        <Link to={"/Login"}>
+                            <span>Logout</span>
+                        </Link>
+                    </li>
                 </ul>
             </nav>
-        </header >
+        </header>
     )
 }
 

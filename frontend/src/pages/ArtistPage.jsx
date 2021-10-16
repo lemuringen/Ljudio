@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { FaFacebook, FaTwitter, FaReddit } from 'react-icons/fa';
-import { useParams } from "react-router-dom";
+import React, {useContext, useEffect, useState} from 'react'
+import {FaFacebook, FaTwitter, FaReddit} from 'react-icons/fa';
+import {useHistory, useParams} from "react-router-dom";
 
 import {
     FacebookShareButton,
@@ -8,9 +8,12 @@ import {
     RedditShareButton
 
 } from "react-share";
-import { PlayerContext } from "../contexts/PlayerContext"; // https://github.com/nygardk/react-share/
+import {PlayerContext} from "../contexts/PlayerContext";
+import {isLoggedIn} from "../Authenticator"; // https://github.com/nygardk/react-share/
 function ArtistPage() {
-    let { id } = useParams();
+
+
+    let {id} = useParams();
     const [albums, setAlbums] = useState()
     const [artist, setArtist] = useState()
     const [artistImageSrc, setArtistImageSrc] = useState("")
@@ -18,9 +21,9 @@ function ArtistPage() {
     const [playerContext, updatePlayerContext] = useContext(PlayerContext)
 
     useEffect
-        (() => {
-            searchArtist()
-        }, [id])
+    (() => {
+        searchArtist()
+    }, [id])
 
 
     async function searchArtist() {
@@ -30,13 +33,13 @@ function ArtistPage() {
     }
 
     useEffect
-        (() => {
-            if (!artist || artist === undefined) return
-            searchAlbums()
-            setArtistImageSrc(artist.thumbnails[0].url)
-            setArtisDescription(artist.description === "" ? "No description available" : artist.description)
+    (() => {
+        if (!artist || artist === undefined) return
+        searchAlbums()
+        setArtistImageSrc(artist.thumbnails[0].url)
+        setArtisDescription(artist.description === "" ? "No description available" : artist.description)
 
-        }, [artist, artistImageSrc])
+    }, [artist, artistImageSrc])
 
     async function searchAlbums() {
         let response = await fetch('https://yt-music-api.herokuapp.com/api/yt/albums/' + artist.name)
@@ -49,12 +52,34 @@ function ArtistPage() {
         let result = await response.json()
 
         updatePlayerContext({
-            queue: result.tracks,
-            currentSong: result.tracks[0]
-        }
+                queue: result.tracks,
+                currentSong: result.tracks[0]
+            }
         )
     }
+    /*
+            AUTHENTICATION>>>
+     */
+    const history = useHistory();
+    const [authenticated, setAuthenticated] = useState(false)
+    if (!authenticated) {
+        requireAuthentication()
+    }
 
+    async function requireAuthentication() {
+        if (await isLoggedIn()) {
+            setAuthenticated(true)
+        } else {
+            history.push("/Login")
+        }
+    }
+
+    if (!authenticated) {
+        return (<div></div>)
+    }
+    /*
+        <<<AUTHENTICATION
+    */
     return (
         <div className="artist-page-container home-holder">
             <section className="artist-details">
@@ -62,7 +87,7 @@ function ArtistPage() {
                     <h1 className="artist-name"></h1>
                 </div>
                 <div className="artist-image">
-                    <img src={artistImageSrc} />
+                    <img src={artistImageSrc}/>
                 </div>
 
                 <div className="artist-description">{artistDescription}</div>
@@ -70,17 +95,17 @@ function ArtistPage() {
                     <FacebookShareButton
                         url={window.location.href}
                         hashtag="#wanderlust">
-                        <FaFacebook />
+                        <FaFacebook/>
                     </FacebookShareButton>
                     <TwitterShareButton
                         url={window.location.href}
                         hashtag="#kämpaPå">
-                        <FaTwitter />
+                        <FaTwitter/>
                     </TwitterShareButton>
                     <RedditShareButton
                         url={window.location.href}
                         hashtag="#carpeDiem">
-                        <FaReddit />
+                        <FaReddit/>
                     </RedditShareButton>
                 </div>
             </section>
@@ -89,7 +114,7 @@ function ArtistPage() {
                 <div className={"album-grid"}>
                     {albums && albums.map(album => (
                         <div className="album-container" key={album.browseId} onClick={() => fetchAlbum(album)}>
-                            <img src={album.thumbnails[2].url} />
+                            <img src={album.thumbnails[2].url}/>
                             <span>
                                 <p>{album.name}</p>
                                 <p>Realeased: {album.year}</p>

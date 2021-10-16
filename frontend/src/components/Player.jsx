@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { PlayerContext } from '../contexts/PlayerContext'
 import Progressbar from "./Progressbar";
+import {useHistory} from "react-router-dom";
+import {isLoggedIn} from "../Authenticator";
 
 function Player() {
     const [context, updateContext] = useContext(PlayerContext)
@@ -185,6 +187,7 @@ let currentlyPlayingString = (context.currentSong.artist ? context.currentSong.a
     }
 
     /*<<<Buttons<<<*/
+
     return (
         <footer id="footer">
             <div className="player-nav">

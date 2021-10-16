@@ -1,11 +1,20 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import {Link, useHistory} from 'react-router-dom';
 
 
 function Login() {
-const [loginCredentials, setLoginCredentials] = useState({
-    email: "",
-    password: ""
-})
+    const [loginCredentials, setLoginCredentials] = useState({
+        email: "",
+        password: ""
+    })
+    const [message, setMessage] = useState("")
+    const [successfulRegistration, setSuccessfulRegistration] = useState(false)
+    const history = useHistory();1
+    useEffect(() => {
+        if (successfulRegistration) {
+            history.push("/")
+        }
+    }, [successfulRegistration])
 
     function updateLoginCredentials(loginCredentialsUpdate) {
         setLoginCredentials({
@@ -13,8 +22,8 @@ const [loginCredentials, setLoginCredentials] = useState({
             ...loginCredentialsUpdate
         })
     }
-    async function login() {
 
+    async function login() {
         const credentials = 'username=' +
             encodeURIComponent(loginCredentials.email)
             + '&password=' +
@@ -22,36 +31,31 @@ const [loginCredentials, setLoginCredentials] = useState({
 
         let response = await fetch("/login", {
             method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            headers: {"Content-Type": "application/x-www-form-urlencoded"},
             body: credentials
         });
 
         if (response.url.includes('error')) {
-            console.log('Wrong username/password');
+            setMessage("Login failed. Wrong email and/or password. Try again.")
+            setSuccessfulRegistration(false)
+        } else {
+            setSuccessfulRegistration(true)
         }
-    }
-    async function whoAmI() {
-        let loggedInUser = null
-        let response = await fetch('/api/login/whoami')
-        try {
-            loggedInUser = await response.json()
-        } catch {
-            console.log('Not logged in');
-        }
-        console.log(loggedInUser);
     }
 
     return (
         <div className="home-holder">
-            <input id="user" name="user"  className="input-bar" type="text" placeholder="Username"
-                   onChange={(e)=>updateLoginCredentials({email: e.target.value})}/>
-            <br />
+
+            <input id="user" name="user" className="input-bar" type="text" placeholder="Email"
+                   onChange={(e) => updateLoginCredentials({email: e.target.value})}/>
+            <br/>
             <input id="password" name="password" className="input-bar" type="text" placeholder="Password"
-                   onChange={(e)=>updateLoginCredentials({password: e.target.value})}/>
-            <br />
-            <a href="#" className="register-link" onClick={whoAmI}>Register here</a>
+                   onChange={(e) => updateLoginCredentials({password: e.target.value})}/>
+            <br/>
+            <Link className="register-link" to={"/Register"}> Register here</Link>
             <a href="#" onClick={login} className="confirm-btn">Login</a>
-        </div >
+            <span><p className="message">{message}</p></span>
+        </div>
     )
 }
 

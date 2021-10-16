@@ -18,7 +18,9 @@
   ::-ms-input-placeholder { /* Microsoft Edge */
    color: #fff;
   }
-
+.message{
+    color: rgba(255,0,0,0.9);
+}
 .confirm-btn {
 	background-color:#388053;
 	border-radius:5px;

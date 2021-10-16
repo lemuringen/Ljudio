@@ -1,6 +1,17 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import {Link, useHistory} from "react-router-dom";
 
 function RegisterPage() {
+    const history = useHistory();
+    const [message, setMessage] = useState("")
+   const[successfulRegistration, setSuccessfulRegistration] = useState(false)
+    useEffect(()=>{
+        if(successfulRegistration){
+            history.push("/")
+        }
+    },[successfulRegistration])
+
+
     const [userCredentials, setUserCredentials] = useState({
         email: '',
         password: '',
@@ -25,7 +36,12 @@ function RegisterPage() {
             response = await response.json()
             console.log(response);
         } catch {
-            console.log('Wrong username/password');
+            console.log('Unsuccessful registration');
+        }
+        if (response.url.includes('error')) {
+            setMessage("Unsuccessful registration. All fields need to be filled out. ")
+        }else{
+            setSuccessfulRegistration(true)
         }
     }
 
@@ -44,7 +60,9 @@ function RegisterPage() {
             <input id="password" name="password" className="input-bar" type="text" placeholder="Password"
                    onChange={(e) => updateUserCredentials({password: e.target.value})}/>
             <br/>
+            <Link className="register-link" to={"/Login"}> Already have an account? Login here.</Link>
             <a href="#" onClick={register} className="confirm-btn">Register</a>
+            <span><p className="message">{message}</p></span>
         </div>
     )
 }

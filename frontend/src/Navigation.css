@@ -27,6 +27,7 @@
     transition: 350ms;
     z-index: 3;
 }
+
 .nav-text {
     display: flex;
     justify-content: start;
@@ -48,6 +49,8 @@
     padding: 0 16px;
     border-radius: 4px;
 }
+
+
 .nav-text a:hover {
     background-color: #1d5077;
 }

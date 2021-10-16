@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import React, {createContext, useState} from 'react'
 import './App.css'
 import './Navigation.css'
 import './Login.css'
@@ -9,7 +9,7 @@ import './ArtistPage.css'
 import {
     BrowserRouter as Router,
     Route,
-    Link
+    Link, Redirect, useHistory
 } from 'react-router-dom'
 
 
@@ -24,21 +24,32 @@ import ArtistPage from "./pages/ArtistPage";
 
 function App() {
 
+    let history = useHistory();
+
+    function requireAuth(){
+        console.log("hej")
+        if(isLoggedIn()){
+            history.push("/");
+        }else{
+            history.push("/Login");
+        }
+    }
+
     return (
         <div className="App">
+
             <Router>
-                <Navigation />
-                <Route path="/" exact component={HomePage} />
+                <Navigation/>
+                <Route exact path="/" component={HomePage} />
                 <Route path="/PlaylistPage" exact component={PlaylistPage} />
-                <Route path="/Login" exact component={Login} />
-                <Route path="/Register" exact component={RegisterPage} />
-                <Route path="/artist/:id" component={ArtistPage} />
+                <Route path="/Login" exact component={Login}/>
+                <Route path="/Register" exact component={RegisterPage}/>
+                <Route path="/artist/:id" component={ArtistPage}/>
             </Router>
             <main>
             </main>
             {/* update current song whenever the videoId changes */}
-            <Player />
-
+            <Player/>
         </div>
     )
 
