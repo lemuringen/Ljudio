@@ -1,16 +1,24 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 
 function Login() {
+const [loginCredentials, setLoginCredentials] = useState({
+    email: "",
+    password: ""
+})
 
-    async function customLogin() {
-        let username = 'user1'
-        let password = 'password1'
+    function updateLoginCredentials(loginCredentialsUpdate) {
+        setLoginCredentials({
+            ...loginCredentials,
+            ...loginCredentialsUpdate
+        })
+    }
+    async function login() {
 
         const credentials = 'username=' +
-            encodeURIComponent(username)
+            encodeURIComponent(loginCredentials.email)
             + '&password=' +
-            encodeURIComponent(password)
+            encodeURIComponent(loginCredentials.password)
 
         let response = await fetch("/login", {
             method: "POST",
@@ -25,7 +33,6 @@ function Login() {
     async function whoAmI() {
         let loggedInUser = null
         let response = await fetch('/api/login/whoami')
-
         try {
             loggedInUser = await response.json()
         } catch {
@@ -36,12 +43,14 @@ function Login() {
 
     return (
         <div className="home-holder">
-            <input id="user" name="user" className="input-bar" type="text" placeholder="Username" />
+            <input id="user" name="user"  className="input-bar" type="text" placeholder="Username"
+                   onChange={(e)=>updateLoginCredentials({email: e.target.value})}/>
             <br />
-            <input id="password" name="password" className="input-bar" type="text" placeholder="Password" />
+            <input id="password" name="password" className="input-bar" type="text" placeholder="Password"
+                   onChange={(e)=>updateLoginCredentials({password: e.target.value})}/>
             <br />
             <a href="#" className="register-link" onClick={whoAmI}>Register here</a>
-            <a href="#" onClick={customLogin} className="confirm-btn">Login</a>
+            <a href="#" onClick={login} className="confirm-btn">Login</a>
         </div >
     )
 }

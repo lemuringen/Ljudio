@@ -8,10 +8,10 @@ function RegisterPage() {
         lastName: ''
     });
 
-    function updateUserCredentials(userUpdate) {
+    function updateUserCredentials(userCredentialsUpdate) {
         setUserCredentials({
             ...userCredentials,
-            ...userUpdate
+            ...userCredentialsUpdate
         })
     }
 
