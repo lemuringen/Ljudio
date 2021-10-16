@@ -15,12 +15,11 @@ function HomePage() {
      */
     async function search(searchWord) {
         let response;
-        if (searchWord === "big") {
-             response = await fetch('https://yt-music-api.herokuapp.com/api/yt/' + searchFilter + '/' + searchWord + 'g')
-        }else{
+
              response = await fetch('https://yt-music-api.herokuapp.com/api/yt/' + searchFilter + '/' + searchWord)
-        }
+console.log(response)
         let result = await response.json()
+        console.log(result.content)
         setSearchResults(result.content)
     }
 

@@ -138,6 +138,9 @@ Home page
 .search-list-item-img-container{
   width: 12%;
 }
+.search-list-item-img-container img{
+max-width: 70%;
+}
 .search-list-item{
   display: flex;
   width: auto;
