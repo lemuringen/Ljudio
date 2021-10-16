@@ -1,30 +1,25 @@
 import React, {useState} from 'react'
 
 function RegisterPage() {
-    const [user, setUser] = useState({
+    const [userCredentials, setUserCredentials] = useState({
         email: '',
         password: '',
         firstName: '',
         lastName: ''
     });
-    function updateUser(e){
-        setUser({
-            ...user,
-            ...e.target.value()
+
+    function updateUserCredentials(userUpdate) {
+        setUserCredentials({
+            ...userCredentials,
+            ...userUpdate
         })
     }
-    async function register() {
-        const credentials = {
-            email: 'user1',
-            password: 'password1',
-            firstName: 'firstName1',
-            lastName: 'lastName1'
-        }
 
+    async function register() {
         let response = await fetch("api/login/register", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(credentials)
+            body: JSON.stringify(userCredentials)
         });
         try {
             response = await response.json()
@@ -32,23 +27,22 @@ function RegisterPage() {
         } catch {
             console.log('Wrong username/password');
         }
-
-        // let response = await fetch("/api/login/hello")
-        // let message = await response.text()
-        // console.log(message);
-
     }
 
     return (
         <div className="home-holder">
-            <input onChange="" id="firstName" name="firstName" className="input-bar" type="text"
+            <input onChange={(e) => updateUserCredentials({firstName: e.target.value})}
+                   id="firstName" name="firstName" className="input-bar" type="text"
                    placeholder="First name"/>
             <br/>
-            <input id="lastName" name="lastName" className="input-bar" type="text" placeholder="Last name"/>
+            <input id="lastName" name="lastName" className="input-bar" type="text" placeholder="Last name"
+                   onChange={(e) => updateUserCredentials({lastName: e.target.value})}/>
             <br/>
-            <input id="mail" name="mail" className="input-bar" type="text" placeholder="E-mail"/>
+            <input id="mail" name="mail" className="input-bar" type="text" placeholder="E-mail"
+                   onChange={(e) => updateUserCredentials({email: e.target.value})}/>
             <br/>
-            <input id="password" name="password" className="input-bar" type="text" placeholder="Password"/>
+            <input id="password" name="password" className="input-bar" type="text" placeholder="Password"
+                   onChange={(e) => updateUserCredentials({password: e.target.value})}/>
             <br/>
             <a href="#" onClick={register} className="confirm-btn">Register</a>
         </div>
