@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from 'react'
 import { PlayerContext } from '../contexts/PlayerContext'
 import { SearchContext } from "../contexts/SearchContext";
 import { BsThreeDotsVertical } from 'react-icons/bs'
-import SearchList from "../components/SearchList";
 import Popup from '../components/Popup'
 import { Link } from "react-router-dom";
 

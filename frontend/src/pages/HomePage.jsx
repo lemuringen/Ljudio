@@ -19,7 +19,6 @@ Search for input given by user with search filter applied
 async function search(searchWord) {
     let response = await fetch('https://yt-music-api.herokuapp.com/api/yt/' + searchFilter + '/' + searchWord)
     let result = await response.json()
-    console.log(result.content)
     setSearchResults(result.content)
 }
 

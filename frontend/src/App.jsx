@@ -1,10 +1,10 @@
 import React, {createContext, useState} from 'react'
-import './App.css'
-import './Navigation.css'
-import './Login.css'
-import './SwitchStyle.css'
-import './Popup.css'
-import './ArtistPage.css'
+import './css/App.css'
+import './css/Navigation.css'
+import './css/Login.css'
+import './css/SwitchStyle.css'
+import './css/Popup.css'
+import './css/ArtistPage.css'
 
 import {
     BrowserRouter as Router,

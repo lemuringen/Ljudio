@@ -34,14 +34,14 @@ function RegisterPage() {
         });
         try {
             response = await response.json()
-            console.log(response);
         } catch {
             console.log('Unsuccessful registration');
         }
-        if (response.url.includes('error')) {
-            setMessage("Unsuccessful registration. All fields need to be filled out. ")
-        } else {
+        if (response) {
             setSuccessfulRegistration(true)
+
+        } else {
+            setMessage("Unsuccessful registration. All fields need to be filled out. ")
         }
     }
 

@@ -31,9 +31,6 @@ public class UserService {
         UserDTO userDTO = myUserDetailsService.addUser(mapFromUser(user));
         return mapToUser(userDTO);
     }
-//    public User login(User user){
-////        myUserDetailsService.
-//    }
 
     public UserDTO mapFromUser(User user) {
         return new UserDTO(user.getId(), user.getEmail(),user.getPassword(), user.getFirstName(), user.getLastName());
