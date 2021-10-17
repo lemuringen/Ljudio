@@ -4,6 +4,9 @@
     Padding: 8px;
     border-radius: 5px;
     color: #fff;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
 /* Placeholder text color */
 ::placeholder {
@@ -21,6 +24,12 @@
 .message{
     color: rgba(255,0,0,0.9);
 }
+
+.login-bar {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
 .confirm-btn {
 	background-color:#388053;
 	border-radius:5px;
@@ -29,6 +38,7 @@
 	color:#ffffff;
 	padding:5px 31px;
 	text-decoration:none;
+    float: right;
 }
 .confirm-btn:hover {
 	background-color:#3a995f;
@@ -36,4 +46,17 @@
 .confirm-btn:active {
 	position:relative;
 	top:1px;
+}
+
+.register-link{
+    float: left;
+    color:#fff;
+}
+.register-link:hover{
+    color:#3B78A8;
+}
+
+
+.padding-box{
+    padding-top: 100px;
 }

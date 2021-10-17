@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react'
-import {Link, useHistory} from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
+import { Link, useHistory } from 'react-router-dom';
 
 
 function Login() {
@@ -9,7 +9,7 @@ function Login() {
     })
     const [message, setMessage] = useState("")
     const [successfulRegistration, setSuccessfulRegistration] = useState(false)
-    const history = useHistory();1
+    const history = useHistory(); 1
     useEffect(() => {
         if (successfulRegistration) {
             history.push("/")
@@ -31,7 +31,7 @@ function Login() {
 
         let response = await fetch("/login", {
             method: "POST",
-            headers: {"Content-Type": "application/x-www-form-urlencoded"},
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: credentials
         });
 
@@ -44,16 +44,18 @@ function Login() {
     }
 
     return (
-        <div className="home-holder">
+        <div className="home-holder padding-box">
 
             <input id="user" name="user" className="input-bar" type="text" placeholder="Email"
-                   onChange={(e) => updateLoginCredentials({email: e.target.value})}/>
-            <br/>
+                onChange={(e) => updateLoginCredentials({ email: e.target.value })} />
+            <br />
             <input id="password" name="password" className="input-bar" type="text" placeholder="Password"
-                   onChange={(e) => updateLoginCredentials({password: e.target.value})}/>
-            <br/>
-            <Link className="register-link" to={"/Register"}> Register here</Link>
-            <a href="#" onClick={login} className="confirm-btn">Login</a>
+                onChange={(e) => updateLoginCredentials({ password: e.target.value })} />
+            <br />
+            <div className="login-bar">
+                <Link className="register-link" to={"/Register"}> Register here</Link>
+                <a href="#" onClick={login} className="confirm-btn">Login</a>
+            </div>
             <span><p className="message">{message}</p></span>
         </div>
     )

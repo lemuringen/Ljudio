@@ -54,6 +54,36 @@
 .nav-text a:hover {
     background-color: #1d5077;
 }
+/* Logout btn */
+.nav-text-logout {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 8px 0px 8px 16px;
+    list-style: none;
+    height: 60px;
+}
+
+.nav-text-logout a {
+    background-color: #9D2D4C;
+    text-decoration: none;
+    color: #f5f5f5;
+    font-size: 18px;
+    width: 95%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    border-radius: 4px;
+}
+
+
+.nav-text-logout a:hover {
+    background-color: #721f36;
+}
+
+
+
 .nav-menu-items {
     width: 100%;
 
