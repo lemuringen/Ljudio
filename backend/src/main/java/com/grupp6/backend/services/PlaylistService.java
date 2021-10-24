@@ -18,11 +18,16 @@ public class PlaylistService {
     public Playlist mapToPlaylist(PlaylistDTO playlistDTO){
         return new Playlist(playlistDTO.getId(),
                 playlistDTO.getName(),
-                playlistDTO.getTrackIds());
+                playlistDTO.getTrackIds()); //enough to copy reference?
     }
     public PlaylistDTO mapFromPlaylist(Playlist playlist){
         return new PlaylistDTO(playlist.getId(),
                 playlist.getName(),
                 playlist.getTrackIds());
+    }
+
+    public Playlist addPlaylist(Playlist playlist) {
+        PlaylistDTO playlistDTO = playlistDAO.addPlaylist(mapFromPlaylist(playlist));
+        return mapToPlaylist(playlistDTO);
     }
 }

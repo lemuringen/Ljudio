@@ -15,11 +15,11 @@ public class PlaylistDAO {
     public PlaylistDAO(PlaylistRepository playlistRepository) {
        this.playlistRepository = playlistRepository;
     }
-/* Unimplemented
+
     public PlaylistDTO addPlaylist(PlaylistDTO playlistDTO) {
-        return null;
+        return playlistRepository.save(playlistDTO);
     }
-*/
+
     /* Unimplemented
     public void deletePlaylist(Long playlistId) {
 
