@@ -13,6 +13,7 @@ public class UserService {
 
     private final MyUserDetailsService myUserDetailsService;
     private final UserDAO userDAO;
+
     @Autowired
     public UserService(MyUserDetailsService myUserDetailsService, UserDAO userDAO) {
         this.myUserDetailsService = myUserDetailsService;
@@ -23,7 +24,7 @@ public class UserService {
         // the login session is stored between page reloads,
         // and we can access the current authenticated user with this
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-
+        System.out.println(username);
         return mapToUser(userDAO.findByEmail(username));
     }
 
@@ -33,9 +34,15 @@ public class UserService {
     }
 
     public UserDTO mapFromUser(User user) {
-        return new UserDTO(user.getId(), user.getEmail(),user.getPassword(), user.getFirstName(), user.getLastName());
+        UserDTO userDTO = new UserDTO();
+        userDTO.setEmail(user.getEmail());
+        userDTO.setPassword(user.getPassword());
+        userDTO.setFirstName(user.getFirstName());
+        userDTO.setLastName(user.getLastName());
+        return userDTO;
     }
-    public User mapToUser(UserDTO userDTO){
+
+    public User mapToUser(UserDTO userDTO) {
         return new User(userDTO.getId(), userDTO.getEmail(), userDTO.getPassword(), userDTO.getFirstName(), userDTO.getLastName());
     }
 }

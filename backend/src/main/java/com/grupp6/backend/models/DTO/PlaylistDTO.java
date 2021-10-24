@@ -14,6 +14,7 @@ public class PlaylistDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private Long userId;
     private String name;
     @ElementCollection
     @CollectionTable(name = "listOfPlaylists")
@@ -21,6 +22,14 @@ public class PlaylistDTO {
 
     public Long getId() {
         return id;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public void setId(Long id) {

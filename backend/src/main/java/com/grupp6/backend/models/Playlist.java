@@ -14,6 +14,7 @@ import java.util.List;
 public class Playlist {
 
     private Long id;
+    private Long userId;
     private String name;
     private List<String> trackIds;
 }
